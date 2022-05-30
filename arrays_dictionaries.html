@@ -48,7 +48,7 @@
 	<h1 class="customIndent3"><b>2. Add an item to a List and print it out</b></h1>
 	<li class="customIndent3">We can use the .append() command on the list object to add an item to our list</li>
 	  <py-repl>dog_breeds = ["daschund","chihuahua","Golden Retriever"]; print(dog_breeds); dog_breeds.append("Corgi"); print(dog_breeds)</py-repl>
-	  	<li class="customIndent3">Lets see what happens when we add a duplicae item - will that matter?</li>
+	  	<li class="customIndent3">Lets see what happens when we add a duplicate item - will that matter?</li>
 	  <py-repl>dog_breeds = ["daschund","chihuahua","Golden Retriever"]; print(dog_breeds); dog_breeds.append("Corgi"); dog_breeds.append("Corgi"); print(dog_breeds)</py-repl>
 		      <p>&nbsp;</p>
 	  <li class="customIndent3">Try it out yourself. Make a List and print it out.</li>
@@ -62,6 +62,7 @@
 	  <py-repl>dog_breeds = ["daschund","chihuahua","Golden Retriever"]; print(dog_breeds); dog_breeds.remove("daschund"); print(dog_breeds)</py-repl>
 	  	<li class="customIndent3">Lets see if it will remove duplicate items from our list</li>
 	  <py-repl>dog_breeds = ["daschund","chihuahua","Golden Retriever","daschund"]; print(dog_breeds); dog_breeds.remove("daschund"); print(dog_breeds)</py-repl>
+			      <li class="customIndent3">interesting. Even though there are duplicated items; it only removes 1 item at a time.</li>
 			      <p>&nbsp;</p>
 	  <li class="customIndent3">Try it out yourself. Make a List and print it out.</li>
 	  <py-repl id="print-string" auto-generate="false"></py-repl>
