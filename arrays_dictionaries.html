@@ -20,7 +20,6 @@
 <!--- Start Content-->
 <h4 class="customIndent1"><b>100 Days of Code - Day 2 - Lists ( arrays ) and Dictionaries ( hashtables ) in Python 3 </b></h4>
 <li class="customIndent2">Tip: press Shift-ENTER to evaluate a cell</li>
-<button onClick="window.location.href=window.location.href" class="button">Start Over</button>
 <br>
 <div>
 <h1 class="customIndent3"><b>1. Make a List and print it out</b></h1>
@@ -93,14 +92,59 @@ my_empty_list = [];
 
 # Github copilot really does help cheat on the learning of python.
 for item in my_list_with_items:
-my_empty_list.append(item);
+  my_empty_list.append(item);
 print(my_empty_list);
 </py-repl>
+<li class="customIndent3">Let see if we can add a new key to our existing dictionary</li>
 			  <p>&nbsp;</p>
   <li class="customIndent3">Try it out yourself. Make a List and print it out.</li>
   <py-repl id="print-string" auto-generate="false"></py-repl>
   <p>&nbsp;</p>
 </div>
+
+<div>
+  <h1 class="customIndent3"><b>5. Dealing with Dictionaries ( hashtables )</b></h1>
+  <li class="customIndent3">Dictionaries or hashtables seem to have multiple Keys in which each key has 1 value</li>
+  <li class="customIndent3">In the example below, the Key of Name is equal to Ron, their Age is 20, and their hobby is 3d printing</li>
+    <py-repl>dictionary_hashtable = {'Name': 'Ron', 'Age': 20, 'Hobby': '3d Printing'}; print(dictionary_hashtable);</py-repl>
+    <li class="customIndent3">In order to access a value in the dictionary, we need to specify the key in order to get the value in question</li>
+    <py-repl>dictionary_hashtable = {'Name': 'Ron', 'Age': 20, 'Hobby': '3d Printing'}; name = dictionary_hashtable['Name']; print(name); age = dictionary_hashtable['Age']; print(age);</py-repl>
+    <li class="customIndent3">Let see if we can add a new key to our existing dictionary</li>
+    <py-repl>dictionary_hashtable = {'Name': 'Ron', 'Age': 20, 'Hobby': '3d Printing'}; print(dictionary_hashtable); dictionary_hashtable['Profession'] = 'Ninja'; print(dictionary_hashtable)</py-repl>
+
+    <p>&nbsp;</p>
+    <li class="customIndent3">Try it out yourself. Make your own dictionary and print it out</li>
+    <py-repl id="print-string" auto-generate="false"></py-repl>
+    <p>&nbsp;</p>
+  </div>
+  <div>
+    <h1 class="customIndent3"><b>6. Modifying dictionary values</b></h1>
+    <li class="customIndent3">We can modify a key in a dictionary simply by specifying its key and equating it to its new value</li>
+      <py-repl>dictionary_hashtable = {'Name': 'Ron', 'Age': 20, 'Hobby': '3d Printing'}; print(dictionary_hashtable); dictionary_hashtable['Hobby'] = 'Programming'; print(dictionary_hashtable);</py-repl>
+      <li class="customIndent3">Lets see if we can use the .clear() method on the dictionary to delete one of the keys and its value</li>
+      <py-repl>dictionary_hashtable = {'Name': 'Ron', 'Age': 20, 'Hobby': '3d Printing'}; print(dictionary_hashtable); del dictionary_hashtable['Age']; print(dictionary_hashtable);</py-repl>
+      
+      <p>&nbsp;</p>
+      <li class="customIndent3">Try it out yourself.</li>
+      <py-repl id="print-string" auto-generate="false"></py-repl>
+      <p>&nbsp;</p>
+    </div>
+
+    <div>
+      <h1 class="customIndent3"><b>7. Storing Dictionary values in a list</b></h1>
+      <li class="customIndent3">Our plan is to define the hashtable, initiate the list, and slowly populate the values</li>
+        <py-repl>human_info = {'Name': 'Ron', 'Age': 20, 'Hobby': '3d Printing'}; alien_list = []; alien_list.append(human_info); print(alien_list); alien_list.append('earth'); print(alien_list); </py-repl>        
+        <li class="customIndent3">lets try the oppostive - lets put some list values in a dictionary - in technicality this is just appending a new key</li>
+        <py-repl>human_info = {'Name': 'Ron', 'Age': 20, 'Hobby': '3d Printing'}; print(human_info); human_info['world'] = 'earth'; print(human_info);  </py-repl>
+        <li class="customIndent3">lets see what happens if we try to nest 1 dictionary within another one</li>
+        <py-repl>human_info = {'Name': 'Ron', 'Age': 20, 'Hobby': '3d Printing'}; print(human_info); shoe_info = {'brand': 'Nike', 'Size': 12, 'units': 'inches'}; human_info['boot_size'] = shoe_info; print(human_info); </py-repl> 
+        <p>&nbsp;</p>
+        <li class="customIndent3">Try it out yourself.</li>
+        <py-repl id="print-string" auto-generate="false"></py-repl>
+        <p>&nbsp;</p>
+      </div>
+
+
 <!--- End Content-->
 </div>
 
