@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/png" href="favicon.png" />
+<link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
+<script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+  <link rel="stylesheet" href="stylesheet.css">
+</head>
+<body>
+
+  <div class="topnav">
+    <a class="active" href="https://itglueguy.github.io/100daysofcode" class="nav-link">100 Days of Coding Challenge - Python, Cloudformation, and Other Topics </a>
+    <a href="https://www.100daysofcode.com" class="nav-link">About the 100 Day Coding Challenge</a>
+    <a href="https://www.linkedin.com/in/tonivnguyen" class="nav-link">Linkedin</a>
+    <button onClick="window.location.href=window.location.href" class="button">Start Over</button>
+    </div>
+
+<div style="padding-left:16px">
+<!--- Start Content-->
+<h4 class="customIndent1"><b>100 Days of Code - Day 3 - Basic Flow control in Python 3 </b></h4>
+<li class="customIndent2">Tip: press Shift-ENTER to evaluate a cell</li>
+<br>
+<div>
+<h1 class="customIndent3"><b>1. Make a choice - If/else decisions</b></h1>
+<li class="customIndent3">One of the cool things about programming is that it allows you to make a choice - either choose one way or another.</li>
+<li class="customIndent3">lets set a variable called make_more_money and use a simple if else statement to qualify it: </li>
+	<py-repl>
+# initiate our variable
+make_more_money = 0;
+  
+learn_to_program = 'Yes'
+
+if learn_to_program == 'Yes':
+  make_more_money = 1
+  print("Learning to progam will likely make you more money in the long term if you are persistant")
+else:
+  make_more_money = 0
+  print("I am satisfied with clicking to do my work and that is good enough")
+  </py-repl>
+<li class="customIndent3">lets try using an elseif statement</li>
+<py-repl>
+# initiate our variable
+make_more_money = 0
+      
+learn_to_program = 'no'
+great_politician = 'Yes'
+    
+if learn_to_program == 'Yes':
+  make_more_money = 1
+  print("Learning to progam will likely make you more money in the long term if you are persistant");
+elif learn_to_program == 'no':
+  if great_politician == 'Yes':
+    print("The reality is that if you navigate politics well, you can probably do better than a programmer in the long term");
+    make_more_money = 1
+  else:
+    print("I am satisfied with clicking to do my work and dont want to deal with politics and that is good enough");
+    make_more_money = 0
+</py-repl>
+  <p>&nbsp;</p>
+  <li class="customIndent3">Try it out yourself. Print out a string of your choosing:</li>
+  <py-repl id="print-string" auto-generate="false"></py-repl>
+  <p>&nbsp;</p>
+</div>
+
+<!--- End Content-->
+</div>
+
+</body>
+</html>
