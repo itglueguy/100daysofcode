@@ -61,3 +61,13 @@ body {
   background-color: #04AA6D;
   color: white;
 }
+
+div.ex2 {
+  width: 75%;
+  margin: auto;
+
+}
+
+.blue {
+  color: rgb(0, 38, 255);
+}
