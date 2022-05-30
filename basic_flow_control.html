@@ -29,28 +29,29 @@
 # initiate our variable
 make_more_money = 0;
   
-learn_to_program = 'Yes'
+learn_to_program = 'yes'
 
-if learn_to_program == 'Yes':
+if learn_to_program == 'yes':
   make_more_money = 1
   print("Learning to progam will likely make you more money in the long term if you are persistant")
 else:
   make_more_money = 0
   print("I am satisfied with clicking to do my work and that is good enough")
   </py-repl>
-<li class="customIndent3">lets try using an elseif statement</li>
+<li class="customIndent3">lets try using an else if ( elif ) statement</li>
 <py-repl>
 # initiate our variable
 make_more_money = 0
-      
+
+# i always forget that python programming is case sensitive - Yes is diffeent then yes compared to the laziness of powershell :)
 learn_to_program = 'no'
-great_politician = 'Yes'
+great_politician = 'yes'
     
 if learn_to_program == 'Yes':
   make_more_money = 1
   print("Learning to progam will likely make you more money in the long term if you are persistant");
 elif learn_to_program == 'no':
-  if great_politician == 'Yes':
+  if great_politician == 'yes':
     print("The reality is that if you navigate politics well, you can probably do better than a programmer in the long term");
     make_more_money = 1
   else:
@@ -62,6 +63,27 @@ elif learn_to_program == 'no':
   <py-repl id="print-string" auto-generate="false"></py-repl>
   <p>&nbsp;</p>
 </div>
+
+<div>
+  <h1 class="customIndent3"><b>2. Learn while you Earn - Do While Loops</b></h1>
+  <li class="customIndent3">Do While loops allows us to do something while we wait for something to become true/false or wait on something.</li>
+  <li class="customIndent3">lets set a variable called make_more_money and use a simple Do While - its supposed to say learning_to_code < 101, but there are some bugs it seems </li>
+    <py-repl>
+# initiate our variable
+learn_to_code = 0;
+    
+while learn_to_code < 101:
+  print("I have learned to code for " + str(learn_to_code) + " days!");
+  learn_to_code = learn_to_code + 1;
+print("My 100 days of learning code is over - but it means i will only have a basic mastery of python!")
+    </py-repl>
+  
+    <p>&nbsp;</p>
+    <li class="customIndent3">Try it out yourself. Print out a string of your choosing:</li>
+    <py-repl id="print-string" auto-generate="false"></py-repl>
+    <p>&nbsp;</p>
+  </div>
+
 
 <!--- End Content-->
 </div>
