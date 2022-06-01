@@ -7,7 +7,7 @@ session = boto3.Session(profile_name='default')
 iam = session.client('iam')
 
 # get the iam users
-users = iam.list_users()
+iam_users = iam.list_users()
 
 for user in iam_users['Users']:
     print("############################################")

@@ -124,6 +124,49 @@ for user in iam_users['Users']:
    
     </div>
 
+    <div>
+      <h1 class="customIndent3"><b>2. List some iam users</b></h1>
+      <li class="customIndent3">Lets use an IAM session instead and list some attributes of our users.</li>
+        <py-repl>
+    # import the python boto3 module
+    import boto3
+    
+    # initiate the client
+    session = boto3.Session(profile_name='default')
+          
+    # filter to the iam client
+      iam = session.client('iam')
+          
+    # get the iam users
+    users = iam.list_users()
+          
+    for user in iam_users['Users']:
+      print(user)
+      print(user['UserName'])
+      user_id = user['UserId']
+      print(user_id)
+      last_used = user['CreateDate'].strftime("%H:%M:%S")
+      print(last_used)
+    </py-repl>
+      <li class="customIndent3">if everything works correctly, you should see the name of the buckets</li>
+      <p>&nbsp;</p> 
+      </div>
+    
+      <div>
+        <h1 class="customIndent3"><b>4. Looking at existing Scripts - Get Credential Report</b></h1>
+        <li class="customIndent3">You can look for additional examples under Day 3 of the Code_examples folder.</li>
+        <li class="customIndent3">When first starting out, its okay to look at how other people have resolved the same problems. In fact it is recommended.</li>
+        <li class="customIndent3">These commands seem to use the boto3 resource vs. the session or client commands - need to learn how to use these commands in the long run.</li>
+          <py-repl>
+# Generate a Credential Report
+generate_credential_report()
+# Get a Credential Report
+get_credential_report()
+      </py-repl>
+
+       
+        </div>
+
 <!--- End Content-->
 </div>
 
