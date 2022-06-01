@@ -38,33 +38,34 @@
 <h1 class="customIndent3"><b>2. List some S3 Buckets</b></h1>
 <li class="customIndent3">The Part below needs to be copy and pasted into Visual Studio Code.</li>
 	<py-repl>
+# import the python boto3 module
 import boto3
 
-  session = boto3.Session(profile_name='default')
+# Start a session
+session = boto3.Session(profile_name='default')
     
-  s3 = session.client('s3')
-    
-  buckets = s3.list_buckets()
-    
-  for bucket in buckets['Buckets']:
-    name = bucket['Name']
-    creationdate = bucket['CreationDate'].strftime("%H:%M:%S")
-    print(name + "-" + creationdate)    
+# the session should relate to s3
+s3 = session.client('s3')
+
+# Lets use the .list_buckets() method to list all the buckets
+buckets = s3.list_buckets()
+
+# use a for loop to show all the attributes
+for bucket in buckets['Buckets']:
+  name = bucket['Name']
+  creationdate = bucket['CreationDate'].strftime("%H:%M:%S")
+  print(name + "-" + creationdate)    
   </py-repl>
 <li class="customIndent3">if everything works correctly, you should see the name of the buckets</li>
 <img src="images/s3_bucket_results_1.png">
 
-
-  <p>&nbsp;</p>
-  <li class="customIndent3">Try it out yourself. Print out a string of your choosing:</li>
-  <py-repl id="print-string" auto-generate="false"></py-repl>
-  <p>&nbsp;</p>
 </div>
 
 <div>
   <h1 class="customIndent3"><b>2. List some iam users</b></h1>
   <li class="customIndent3">Lets use an IAM session instead and list some attributes of our users.</li>
     <py-repl>
+# import the python boto3 module
 import boto3
 
 # initiate the client
@@ -85,14 +86,42 @@ for user in iam_users['Users']:
   print(last_used)
 </py-repl>
   <li class="customIndent3">if everything works correctly, you should see the name of the buckets</li>
-  <img src="images/s3_bucket_results_1.png">
-  
-  
-    <p>&nbsp;</p>
-    <li class="customIndent3">Try it out yourself. Print out a string of your choosing:</li>
-    <py-repl id="print-string" auto-generate="false"></py-repl>
-    <p>&nbsp;</p>
+  <p>&nbsp;</p> 
   </div>
+
+  <div>
+    <h1 class="customIndent3"><b>3. Exploring other IAM Attributes</b></h1>
+    <li class="customIndent3">Lets use an IAM session instead and list some additional attributes of our users.</li>
+      <py-repl>
+        import boto3
+
+        # initiate the client
+        session = boto3.Session(profile_name='default')
+        
+        # filter to the iam client
+        iam = session.client('iam')
+        
+        # get the iam users
+        users = iam.list_users()
+        
+        for user in iam_users['Users']:
+            print("############################################")
+            print("Username: " + user['UserName'])
+            print("UserID: " + user['UserId'])
+            print("ARN: " + user['Arn'])
+            last_used = user['CreateDate'].strftime("%H:%M:%S")
+            print("IAM Last used: " + last_used)
+            access_keys = iam.list_access_keys(UserName=user['UserName'])
+            for item in access_keys['AccessKeyMetadata']:
+                #print(item)
+                print("    -------------------------------------")
+                print("    AccessKeyID: " + item['AccessKeyId'])
+                print("    Access Key Status:" + item['Status'])
+                print("    Access Key Creation Date: " + item['CreateDate'].strftime("%H:%M:%S"))
+  </py-repl>
+    <li class="customIndent3">if everything works correctly, you should see the name of the buckets</li>
+   
+    </div>
 
 <!--- End Content-->
 </div>
