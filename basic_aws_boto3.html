@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/png" href="favicon.png" />
+<link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
+<script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+  <link rel="stylesheet" href="stylesheet.css">
+  <py-env>
+    - boto3
+    - pandas
+  </py-env>
+</head>
+<body>
+
+  <div class="topnav">
+    <a class="active" href="https://itglueguy.github.io/100daysofcode" class="nav-link">100 Days of Coding Challenge - Python, Cloudformation, and Other Topics </a>
+    <a href="https://www.100daysofcode.com" class="nav-link">About the 100 Day Coding Challenge</a>
+    <a href="https://www.linkedin.com/in/tonivnguyen" class="nav-link">Linkedin</a>
+    <button onClick="window.location.href=window.location.href" class="button">Start Over</button>
+    </div>
+
+<div style="padding-left:16px">
+<!--- Start Content-->
+<h4 class="customIndent1"><b>100 Days of Code - Day 3 - Using the AWS boto3 module in Python 3 </b></h4>
+<li class="customIndent2">Tip: press Shift-ENTER to evaluate a cell</li>
+<br>
+
+<div>
+  <h1 class="customIndent3"><b>1. Initiate the AWS credentials</b></h1>
+  <li class="customIndent3">As the boto3 module doesn't work here, we will need to install: Visual Studio  Code, Python 3.9, and the Boto 3 module ( pip install boto3). You will need an AWS Account in additional to IAM Credentials.</li>
+  <li class="customIndent3">Click on Start, type in CMD and run it as administrator. you should be able to do a aws --version command to make sure the version. You may need to restart your system.</li>
+  <li class="customIndent3">use the "aws configure" command to enter in your aws iam credentials</li>
+  <p>&nbsp;</p> 
+  </div>
+
+<div>
+<h1 class="customIndent3"><b>2. List some S3 Buckets</b></h1>
+<li class="customIndent3">The Part below needs to be copy and pasted into Visual Studio Code.</li>
+	<py-repl>
+import boto3
+
+  session = boto3.Session(profile_name='default')
+    
+  s3 = session.client('s3')
+    
+  buckets = s3.list_buckets()
+    
+  for bucket in buckets['Buckets']:
+    name = bucket['Name']
+    creationdate = bucket['CreationDate'].strftime("%H:%M:%S")
+    print(name + "-" + creationdate)    
+  </py-repl>
+<li class="customIndent3">if everything works correctly, you should see the name of the buckets</li>
+<img src="images/s3_bucket_results_1.png">
+
+
+  <p>&nbsp;</p>
+  <li class="customIndent3">Try it out yourself. Print out a string of your choosing:</li>
+  <py-repl id="print-string" auto-generate="false"></py-repl>
+  <p>&nbsp;</p>
+</div>
+
+<div>
+  <h1 class="customIndent3"><b>2. List some iam users</b></h1>
+  <li class="customIndent3">Lets use an IAM session instead and list some attributes of our users.</li>
+    <py-repl>
+import boto3
+
+# initiate the client
+session = boto3.Session(profile_name='default')
+      
+# filter to the iam client
+  iam = session.client('iam')
+      
+# get the iam users
+users = iam.list_users()
+      
+for user in iam_users['Users']:
+  print(user)
+  print(user['UserName'])
+  user_id = user['UserId']
+  print(user_id)
+  last_used = user['CreateDate'].strftime("%H:%M:%S")
+  print(last_used)
+</py-repl>
+  <li class="customIndent3">if everything works correctly, you should see the name of the buckets</li>
+  <img src="images/s3_bucket_results_1.png">
+  
+  
+    <p>&nbsp;</p>
+    <li class="customIndent3">Try it out yourself. Print out a string of your choosing:</li>
+    <py-repl id="print-string" auto-generate="false"></py-repl>
+    <p>&nbsp;</p>
+  </div>
+
+<!--- End Content-->
+</div>
+
+</body>
+</html>
