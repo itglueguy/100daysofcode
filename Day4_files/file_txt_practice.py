@@ -1,4 +1,4 @@
-# Read a local file - So this opens the file
+# Read a local file - 'r' gives it the ability to ready the file
 file = open('text_file.txt', 'r')
 
 # Read the Whole File - Try running this twice. it is interesting it only works once!
@@ -46,7 +46,7 @@ while len(file.readline()) > 0:
 file = open('text_file.txt', 'r')
 file.readlines()
 
-# open the file - this seems to overwrite the file in question vs. appending it
+# open the file - 'w' is for writing - it will overewrite the file as opposed to appending it
 file = open('text_file.txt', 'w')
 
 # lets use a list to write to the file
@@ -64,11 +64,11 @@ file = open('text_file.txt', 'r')
 file.readlines()
 
 #-----------------------------------------------------------------------------
-# this mode apparently appends a file
+# this mode reads it for now
 file = open('text_file.txt', 'r')
 file.readlines()
 
-# open the file - this seems to overwrite the file in question vs. appending it
+# open the file - this puts the file into an append mode
 file = open('text_file.txt', 'a')
 
 # lets use a list to write to the file
