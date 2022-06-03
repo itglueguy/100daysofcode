@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/png" href="favicon.png" />
+<link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
+<script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+  <link rel="stylesheet" href="stylesheet.css">
+  <py-env>
+    - boto3
+    - pandas
+  </py-env>
+</head>
+<body>
+
+  <div class="topnav">
+    <a class="active" href="https://itglueguy.github.io/100daysofcode" class="nav-link">100 Days of Coding Challenge - Python, Cloudformation, and Other Topics </a>
+    <a href="https://www.100daysofcode.com" class="nav-link">About the 100 Day Coding Challenge</a>
+    <a href="https://www.linkedin.com/in/tonivnguyen" class="nav-link">Linkedin</a>
+    <button onClick="window.location.href=window.location.href" class="button">Start Over</button>
+    </div>
+
+<div style="padding-left:16px">
+<!--- Start Content-->
+<h4 class="customIndent1"><b>100 Days of Code - Day 7 - Working with Time</b></h4>
+<li class="customIndent2">Tip: press Shift-ENTER to evaluate a cell</li>
+<br>
+
+ <div>
+  <h1 class="customIndent3"><b>Classes with Objet Methods</b></h1>
+  <li class="customIndent3">The first one was about introducing the data structure part. This part show mores about the object methods</li>
+  <li class="customIndent3">i am following this tutorial: <a href='https://www.programiz.com/python-programming/datetime/current-time'>Tutorial link on time - Click HERE</a></li>
+    <py-repl>
+# subimport of a module?    
+from datetime import datetime
+
+# use the now() method
+now = datetime.now()
+
+# datetime can't be printed - so it needs to be converted to a string
+current_time = now.strftime("%H:%M:%S")
+
+print("Current Time =", current_time)
+
+# See how the object changes
+print("result of this: " + datetime.now().strftime("%H:%M:%S"))
+
+# as it is being manipulated
+print("result of this 2: " + datetime.now().time().strftime("%H:%M:%S"))
+
+    </py-repl>
+  <li class="customIndent3">One helpful thing to learn is what methods are available on an objects</li>
+
+<py-repl>
+# i was looking on the webs and the get-command from powershell in python can use the dir(object) command
+dir(datetime)
+</py-repl>
+  <li class="customIndent3">Lets Add Time to the current Time</li>
+      <py-repl>
+    </py-repl>
+
+      <li class="customIndent3">Remove time from the current time</li>
+      <py-repl>
+    </py-repl>
+
+
+    <li class="customIndent3">Lessons learned: </li>
+  </div>
+
+
+
+
+<!--- End Content-->
+</div>
+
+</body>
+</html>
