@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/png" href="favicon.png" />
+<link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
+<script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+  <link rel="stylesheet" href="stylesheet.css">
+  <py-env>
+    - boto3
+    - pandas
+  </py-env>
+</head>
+<body>
+
+  <div class="topnav">
+    <a class="active" href="https://itglueguy.github.io/100daysofcode" class="nav-link">100 Days of Coding Challenge - Python, Cloudformation, and Other Topics </a>
+    <a href="https://www.100daysofcode.com" class="nav-link">About the 100 Day Coding Challenge</a>
+    <a href="https://www.linkedin.com/in/tonivnguyen" class="nav-link">Linkedin</a>
+    <button onClick="window.location.href=window.location.href" class="button">Start Over</button>
+    </div>
+
+<div style="padding-left:16px">
+<!--- Start Content-->
+<h4 class="customIndent1"><b>100 Days of Code - Day 4 - Working with Data Formats</b></h4>
+<li class="customIndent2">Tip: press Shift-ENTER to evaluate a cell</li>
+<br>
+
+<div>
+  <h1 class="customIndent3"><b>Limitations of pyscripts</b></h1>
+  <li class="customIndent3">File for implementing this script can be found here: https://github.com/itglueguy/100daysofcode/tree/main/Day5_files.</li>
+  <li class="customIndent3">Although there are limitations to pyscript, i do like the ability to use it to post snippets of code</li>
+  <li class="customIndent3">Goal: List all accounts, learn about assuming roles, and get IAM Reports across the AWs Organization</li>
+  <li class="customIndent3">Snippet: List all Users in 1 account</li>
+    <py-repl>
+# Import the boto3 module
+import boto3
+import datetime
+# use the client endpoint
+client = boto3.client('organizations')
+
+# List all AWS Accounts in the AWS Organization
+accounts = client.list_accounts()
+
+print("Account number - Name - Email - Status")
+
+for account in accounts['Accounts']:
+    #print(account)
+    account_id = account['Id']
+    account_name = account['Name']
+    account_email = account['Email']
+    account_status = account['Status']
+    print(account_id + "----------------------------------------------------------")
+
+    # Redefine the client endpoint to connect to the account
+    client = boto3.client('sts')
+
+    # python assume role
+    assume_role = client.assume_role( RoleArn='arn:aws:iam::'+account_id+':role/AWSControlTowerExecution',RoleSessionName='OrganizationAccountAccessRole')
+    #print(assume_role)
+
+    # this seems to access nested key values
+    newsession_id = assume_role["Credentials"]["AccessKeyId"]
+    newsession_key = assume_role["Credentials"]["SecretAccessKey"]
+    newsession_token = assume_role["Credentials"]["SessionToken"]
+
+    # Use the assumed session vars to create a new boto3 client with the assumed role creds
+    # Here I create an s3 client using the assumed creds.
+    iam = boto3.client(
+        'iam',
+        region_name='us-east-1',
+        aws_access_key_id=newsession_id,
+        aws_secret_access_key=newsession_key,
+        aws_session_token=newsession_token
+    )
+
+    # now i can list all users
+    try:
+        iam_users = iam.list_users()
+    except:
+        print("Access issues to " + account_id)
+        
+    for user in iam_users['Users']:
+        print("############################################")
+        print("Username: " + user['UserName'])
+        print("UserID: " + user['UserId'])
+        print("ARN: " + user['Arn'])
+        last_used = user['CreateDate'].strftime("%H:%M:%S")
+        print("IAM Last used: " + last_used)
+        access_keys = iam.list_access_keys(UserName=user['UserName'])
+        for item in access_keys['AccessKeyMetadata']:
+            #print(item)
+            print("    -------------------------------------")
+            print("    AccessKeyID: " + item['AccessKeyId'])
+            print("    Access Key Status:" + item['Status'])
+            print("    Access Key Creation Date: " + item['CreateDate'].strftime("%H:%M:%S"))
+    # end code for list all users in 1 account
+
+
+
+</py-repl>
+  
+  </div>
+
+
+
+
+<!--- End Content-->
+</div>
+
+</body>
+</html>
