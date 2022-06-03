@@ -22,7 +22,7 @@
 
 <div style="padding-left:16px">
 <!--- Start Content-->
-<h4 class="customIndent1"><b>100 Days of Code - Day 4 - Working with Data Formats</b></h4>
+<h4 class="customIndent1"><b>100 Days of Code - Day 5 - Cross Account IAM with Boto3 python module</b></h4>
 <li class="customIndent2">Tip: press Shift-ENTER to evaluate a cell</li>
 <br>
 
@@ -31,7 +31,8 @@
   <li class="customIndent3">File for implementing this script can be found here: https://github.com/itglueguy/100daysofcode/tree/main/Day5_files.</li>
   <li class="customIndent3">Although there are limitations to pyscript, i do like the ability to use it to post snippets of code</li>
   <li class="customIndent3">Goal: List all accounts, learn about assuming roles, and get IAM Reports across the AWs Organization</li>
-  <li class="customIndent3">Snippet: List all Users in 1 account</li>
+  <li class="customIndent3">Snippet: A) List all Accounts, B) Assume role intot the acccount, c) list all users from the asssumed role</li>
+  <li class="customIndent3">Note: This was a little tricky as it was ran from an EC2 instance role that already had the role as AWS Control Tower. Double Assuming roles can get tricky.</li>
     <py-repl>
 # Import the boto3 module
 import boto3
