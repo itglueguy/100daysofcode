@@ -29,79 +29,14 @@
  <div>
   <h1 class="customIndent3"><b>Classes with Objet Methods</b></h1>
   <li class="customIndent3">The first one was about introducing the data structure part. This part show mores about the object methods</li>
-  <li class="customIndent3">i am following this tutorial: <a href='https://www.programiz.com/python-programming/datetime/current-time'>Tutorial link on time - Click HERE</a></li>
     <py-repl>
-# subimport of a module?    
-from datetime import datetime
-
-# use the now() method
-now = datetime.now()
-
-# datetime can't be printed - so it needs to be converted to a string
-current_time = now.strftime("%H:%M:%S")
-
-print("Current Time =", current_time)
-
-# See how the object changes
-print("result of this: " + datetime.now().strftime("%H:%M:%S"))
-
-# as it is being manipulated
-print("result of this 2: " + datetime.now().time().strftime("%H:%M:%S"))
 
     </py-repl>
   <li class="customIndent3">One helpful thing to learn is what methods are available on an objects</li>
 
-<py-repl>
-# i was looking on the webs and the get-command from powershell in python can use the dir(object) command
-dir(datetime)
-</py-repl>
-  <li class="customIndent3">Lets Add Time to the current Time - does not seemt to work with years as it requires more arguments to work</li>
-      <py-repl>
-# import the modules
-from datetime import datetime
-from datetime import timedelta
-
-# Get current time in local timezone
-current_time = datetime.now()
-print('Current Time: ', current_time)
-
-# add 4 hours to the current time
-n = 4
-# Add 4 hours to datetime object containing current time
-future_time = current_time + timedelta(hours=n)
-print('Future Time (2 hours from now ): ', future_time)
-
-# subtract 5 days
-n= -5
-# subtract 5 days  to datetime object containing current time
-future_time = current_time + timedelta(days=n)
-print('Future Time (-5 days from now ): ', future_time)
-
-# years seems to be special....let me try to address that
-
-
-# Convert datetime object to string in specific format 
-future_time_str = future_time.strftime('%m-%d-%Y %H:%M:%S.%f')
-print('Future Time as string object: ', future_time_str)
-    </py-repl>
 
       <li class="customIndent3">Sincei already did add and remove time, lets see how to do that with years</li>
-      <py-repl>
-      # import the modules
-from datetime import datetime
-from datetime import timedelta
 
-# Get current time in local timezone
-current_time = datetime.now()
-print('Current Time: ', current_time)
-
-# mutiply years and days to get total days
-years = 5
-n = years * 365
-# Add 400 to datetime object containing current time
-future_time = current_time + timedelta(days=n)
-print('Future Time (5 yers from now ): ', future_time)
-    </py-repl>
 
 
     <li class="customIndent3">Lessons learned: </li>
