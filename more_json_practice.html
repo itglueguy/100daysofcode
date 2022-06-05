@@ -164,15 +164,26 @@ with open('c:\\temp\\test.csv', 'w') as csvfile:
 
     </py-repl>
 
-      <li class="customIndent3"> to make it more formulaic, is there a way to get the field names from the dict?</li>
+      <li class="customIndent3">Since i am a bit stuck getting key values recursively, i will just end the script</li>
+            <li class="customIndent3">Code doesn't seem to wrok in pyscript</li>
       <py-repl>
+# looked up the issue on stackoverflow and found a solution
+import csv
 
+# prepopulates the header beforehand  
+employee_info = ['name', 'salary', 'title']
+  
+# you need to create the c:\temp folder before hand  
+with open('c:\\temp\\employess_list.csv', 'w', newline='') as csvfile:
+    writer = csv.DictWriter(csvfile, fieldnames = employee_info)
+    writer.writeheader()
+    writer.writerows(json_dict['employees'])
     </py-repl>
 
 
   </div>
 
-    <li class="customIndent3">Lessons learned: You can use a combination of list and dict methods to properly sturcture json accordingly.</li>
+    <li class="customIndent3">Lessons learned: You can use a combination of list and dict methods to properly sturcture json accordingly. You can use the dictwriter method to translate a dictionary into a dcsv file</li>
 
 
 <!--- End Content-->

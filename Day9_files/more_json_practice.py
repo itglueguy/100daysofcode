@@ -98,11 +98,24 @@ new_dict = [
 {'emp_id': 299, 'emp_name': 'Mask', 'skills': 'Ruby'},
 ]
 
-# you need to create the c:\temp folder and file test.csv befoer hand  
+# you need to create the c:\temp folder and file test.csv befoer hand
+# code seems to create empty lines in the file
 with open('c:\\temp\\test.csv', 'w') as csvfile:
     writer = csv.DictWriter(csvfile, fieldnames = employee_info)
     writer.writeheader()
     writer.writerows(new_dict)
 
+#--------
 
+# looked up the issue on stackoverflow and found a solution
+import csv
 
+# prepopulates the header beforehand  
+employee_info = ['name', 'salary', 'title']
+  
+
+# you need to create the c:\temp folder before hand  
+with open('c:\\temp\\employess_list.csv', 'w', newline='') as csvfile:
+    writer = csv.DictWriter(csvfile, fieldnames = employee_info)
+    writer.writeheader()
+    writer.writerows(json_dict['employees'])
