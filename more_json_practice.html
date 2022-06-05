@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/png" href="favicon.png" />
+<link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
+<script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+  <link rel="stylesheet" href="stylesheet.css">
+</head>
+<body>
+
+  <div class="topnav">
+    <a class="active" href="https://itglueguy.github.io/100daysofcode" class="nav-link">100 Days of Coding Challenge - Python, Cloudformation, and Other Topics </a>
+    <a href="https://www.100daysofcode.com" class="nav-link">About the 100 Day Coding Challenge</a>
+    <a href="https://www.linkedin.com/in/tonivnguyen" class="nav-link">Linkedin</a>
+    <button onClick="window.location.href=window.location.href" class="button">Start Over</button>
+    </div>
+
+<div style="padding-left:16px">
+<!--- Start Content-->
+<h4 class="customIndent1"><b>100 Days of Code - Day 9 - More JSON Practice - nested json and json to csv conversion </b></h4>
+<li class="customIndent2">Tip: press Shift-ENTER to evaluate a cell</li>
+<br>
+
+ <div>
+  <h1 class="customIndent3"><b>Create a simpler JSON Structure</b></h1>
+  <li class="customIndent3">In this part, we will cover how to use List / Dictionaries in order to create more complicated JSON Structures</li>
+  <li class="customIndent3">Lets try to create a somewhat nested structure below</li>
+    <py-repl>
+# yes, i could just type it out, but it won't show programmatic creation of building the json statement    
+json = '{"employees":["John", "Anna", "Peter"]}'
+print(json)
+    </py-repl>
+  <li class="customIndent3">So, in order to create this, we will A) Create a list, initiate a dictionary, b) equate the list to a key in python, and convert it from a dict to a json by using the json.dumps() method</li>
+
+<py-repl>
+import json
+
+# Create the list
+employee_list = ['John','Anna','Peter']
+
+# create empty dict curley brackets
+dict = {}
+
+# equate the list to the key value
+dict['employees'] = employee_list
+
+# print it out ( still a dictionary)
+dict
+
+# output from dict to json string by using the .dumps() method
+json_string = json.dumps(dict)
+
+# print it out as a string
+print(json_string)
+
+</py-repl>
+  <li class="customIndent3">To make the data structure a bit more interesting, lets give each employee atributes such as name, salary, and title</li>
+    <li class="customIndent3">To accomplish this, instead of appending their name to a list, we will create a dict for each employee and instead append the dict attributes related to the employee</li>
+      <py-repl>
+import json
+# initiate the list
+employee_list = []
+
+employee_dict = {}
+employee_dict['name'] = 'John'
+employee_dict['salary'] = '65'
+employee_dict['title'] = 'Cheo'
+
+employee_list.append(employee_dict)
+
+employee_dict = {}
+employee_dict['name'] = 'Anna'
+employee_dict['salary'] = '85'
+employee_dict['title'] = 'Choo'
+
+employee_list.append(employee_dict)
+
+employee_dict = {}
+employee_dict['name'] = 'Peter'
+employee_dict['salary'] = '45'
+employee_dict['title'] = 'ChMo'
+
+employee_list.append(employee_dict)
+
+# employee list now has attributes
+employee_list
+
+# create empty dict
+employee_list_dict = {}
+
+# equate the list to the key value
+employee_list_dict['employees'] = employee_list
+
+# convert the dict to a json string
+json_string = json.dumps(employee_list_dict)
+
+# print out the json string
+print(json_string)
+# the structure is:     overalldict{dict_key=list[dict{}]}
+
+
+    </py-repl>
+
+      <li class="customIndent3">To make the previous a little more fun, lets append one more key</li>
+      <py-repl>
+# github copilot is a really good tool for students and i would recommend it to anyone who is looking to learn python - hahah recommendations
+employee_list_dict['Author'] = 'Toni Nguyen'
+
+# convert the dict to a json string
+json_string = json.dumps(employee_list_dict)
+
+# print out the json string
+print(json_string)
+    </py-repl>
+
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+  </div>
+
+ <div>
+  <h1 class="customIndent3"><b>Practicing converting JSON to CSV format</b></h1>
+  <li class="customIndent3">In order to get better at api practice, it will be import to know how to process json data into simple csv format</li>
+  <li class="customIndent3">We will try to convert the previous employee_list json to a csv file</li>
+    <py-repl>
+# run the previous example to make this work   
+print(json_string)
+    </py-repl>
+  <li class="customIndent3">So, in order to do this, we will convert the json back into a dict using the json.loads() method</li>
+
+<py-repl>
+# convert from json to dictionary
+json_dict = json.loads(json_string)
+
+# Access the key values related to employees
+json_dict['employees']
+
+# see what attributes are available
+dir(json_dict['employees'])
+
+
+</py-repl>
+  <li class="customIndent3">As looking at guides is okay at the beginning, the guides suggest to use the csv dictwriter() method in order to accomplish this</li>
+      <py-repl>
+import csv
+
+# prepopulates the header beforehand  
+employee_info = ['emp_id', 'emp_name', 'skills']
+  
+new_dict = [
+{'emp_id': 456, 'emp_name': 'George', 'skills': 'Python'},
+{'emp_id': 892, 'emp_name': 'Adam', 'skills': 'Java'},
+{'emp_id': 178, 'emp_name': 'Gilchrist', 'skills': 'Mongo db'},
+{'emp_id': 155, 'emp_name': 'Elon', 'skills': 'Sql'},
+{'emp_id': 299, 'emp_name': 'Mask', 'skills': 'Ruby'},
+]
+
+# you need to create the c:\temp folder before hand  
+with open('c:\\temp\\test.csv', 'w') as csvfile:
+    writer = csv.DictWriter(csvfile, fieldnames = employee_info)
+    writer.writeheader()
+    writer.writerows(new_dict)
+
+
+    </py-repl>
+
+      <li class="customIndent3"> to make it more formulaic, is there a way to get the field names from the dict?</li>
+      <py-repl>
+
+    </py-repl>
+
+
+  </div>
+
+    <li class="customIndent3">Lessons learned: You can use a combination of list and dict methods to properly sturcture json accordingly.</li>
+
+
+<!--- End Content-->
+</div>
+
+</body>
+</html>
