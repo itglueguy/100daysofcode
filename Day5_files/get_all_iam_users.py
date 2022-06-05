@@ -44,13 +44,6 @@ for account in accounts['Accounts']:
         iam_users = iam.list_users()
     except:
         print("Access issues to " + account_id)
-        
-    for user in iam_users['Users']:
-        print("############################################")
-        print("Username: " + user['UserName'])
-        print("UserID: " + user['UserId'])
-        print("ARN: " + user['Arn'])
-        last_used = user['CreateDate'].strftime("%H:%M:%S")
         print("IAM Last used: " + last_used)
         access_keys = iam.list_access_keys(UserName=user['UserName'])
         for item in access_keys['AccessKeyMetadata']:

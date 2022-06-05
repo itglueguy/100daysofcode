@@ -9,6 +9,8 @@ iam = session.client('iam')
 # get the iam users
 iam_users = iam.list_users()
 
+iam_user_list = ['1']
+
 for user in iam_users['Users']:
     print("############################################")
     print("Username: " + user['UserName'])
@@ -29,3 +31,5 @@ for user in iam_users['Users']:
         print("    MFA Device Serial: " + item['SerialNumber'])
         print("    MFA Device Status: " + item['Status'])
         print("    MFA Device Create Date: " + item['EnableDate'].strftime("%m/%d/%Y"))
+    # This method converts a dict to json and bypasses the date not serializable issue
+        json_string = json.dumps(user, indent=4, sort_keys=True, default=str)

@@ -27,18 +27,49 @@
 <br>
 
  <div>
-  <h1 class="customIndent3"><b>Classes with Objet Methods</b></h1>
-  <li class="customIndent3">The first one was about introducing the data structure part. This part show mores about the object methods</li>
-    <py-repl>
+  <h1 class="customIndent3"><b>Relearning elements of selenium</b></h1>
+  <li class="customIndent3">File for practice can be found here: <a href='https://github.com/itglueguy/100daysofcode/tree/main/Day8_files'>Day 8 Training Files</a>.</li>
+    <li class="customIndent3">Selenium is used for automation with browsers typically - to find, click on, type, and test items in a browser</li>
+        <li class="customIndent3">The portion below starts the connection</li>
+        <py-repl>
+# import some modules relevant to selenium
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.by import By
 
+# Use Chrome for the Driver - other options include internet explorer, edge, firefox, and safarari
+driver = webdriver.Chrome()
+
+# Typically it will go to some website
+driver.get("http://www.python.org")
     </py-repl>
-  <li class="customIndent3">One helpful thing to learn is what methods are available on an objects</li>
+            <li class="customIndent3">It will than be tasked to wait/assert something, and than find the given element and do something to it</li>
+        <py-repl>
+# find the word Python in the browser title
+assert "Python" in driver.title
 
+# This elemenent seems to relate to the search bar
+elem = driver.find_element(By.NAME, "q")
 
-      <li class="customIndent3">Sincei already did add and remove time, lets see how to do that with years</li>
+# applies the clear method on the search bar
+elem.clear()
 
+# types in some word
+elem.send_keys("toni bot was here")
+    </py-repl>
+                <li class="customIndent3">It will either try to find HTML elements or things that are defined in CSS through either ID or by class name. Its easier when its unique, but usually it needs to be filtered</li>
+                <li class="customIndent3">I used the selectorhub chrome extension to help find patterns</li>
+        <py-repl>
+# find elements by ID - HTML/CSS String
 
+# find elements by ID - Python Code to find the element 
 
+#--------------------
+
+# find elements by Name - HTML/CSS String
+
+# find elements by ID - Python Code to find the element 
+    </py-repl>
     <li class="customIndent3">Lessons learned: </li>
   </div>
 

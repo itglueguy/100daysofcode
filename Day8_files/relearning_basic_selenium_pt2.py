@@ -23,15 +23,15 @@ import unidecode
 driver = webdriver.Chrome()
 
 # go the Orange County Craigslist Site
-driver.get("https://orangecounty.craigslist.org/search/sssg")
+driver.get("https://www.google.com/")
 
 # find the word craigslist in the browser title
-assert "craigslist" in driver.title
+assert "Google" in driver.title
 
 # look at the source code of the search bar and try to find that element
 # https://selenium-python.readthedocs.io/locating-elements.html
 # we see in the source code of hte page that the id is "query"
-elem = driver.find_element(By.ID, 'query')
+elem = driver.find_element(By.NAME, "q")
 
 # applies the clear method on the search bar
 elem.clear()
@@ -42,6 +42,11 @@ elem.send_keys("espresso machines")
 
 # press enter
 elem.send_keys(Keys.RETURN)
+
+max_price = driver.find_element(By.NAME, "max_price")
+
+max_price.send_keys("500")
+
 
 # if everything works correctly, you should see some espresso machines
 # this says "find the word espresso in the source code of the web page"
