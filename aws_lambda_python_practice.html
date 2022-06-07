@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/png" href="favicon.png" />
+<link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
+<script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+  <link rel="stylesheet" href="stylesheet.css">
+  <py-env>
+    - boto3
+    - pandas
+  </py-env>
+</head>
+<body>
+
+  <div class="topnav">
+    <a class="active" href="https://itglueguy.github.io/100daysofcode" class="nav-link">100 Days of Coding Challenge - Python, Cloudformation, and Other Topics </a>
+    <a href="https://www.100daysofcode.com" class="nav-link">About the 100 Day Coding Challenge</a>
+    <a href="https://www.linkedin.com/in/tonivnguyen" class="nav-link">Linkedin</a>
+    <button onClick="window.location.href=window.location.href" class="button">Start Over</button>
+    </div>
+
+<div style="padding-left:16px">
+<!--- Start Content-->
+<h4 class="customIndent1"><b>100 Days of Code - Day 10 - AWS Lambda Python Practice</b></h4>
+<li class="customIndent2">Tip: press Shift-ENTER to evaluate a cell</li>
+<br>
+
+ <div>
+  <h1 class="customIndent3"><b>Working with AWS Lambda</b></h1>
+  <li class="customIndent3">AWS Lamda - python edition - seeems to accept a dictionary as input ( not a json! ) and outputs dictionary accordingly</li>
+  <li class="customIndent3">The tricky thing in the beginning is the different between a dict and json is that one has single quotation marks and other doesn't</li>
+    <py-repl>
+#the dictionary input
+
+# this is dict that you define as your test event
+event = {
+    "first_name": "John",
+    "last_name": "Smith"
+}
+
+context = []
+
+# the Lambda function to use    
+def lambda_handler(event, context):
+    message = 'Hello {} {}!'.format(event['first_name'], event['last_name'])  
+    return { 
+        'message' : message
+    }
+
+# normally it runs automatically in aws lambda, but we need to give it a nudge here
+lambda_handler(event,context) 
+    </py-repl>
+  <li class="customIndent3">Let me implement my own simple function - that took way too long</li>
+
+<py-repl>
+def lambda_handler(event, context):
+    # TODO implement
+    name = event['name']
+    breed = event['breed']
+    age = event['age']
+    print = "I am a " + age + " year old" + breed + "that is named " + name
+    return {
+        'statusCode': 200,
+        'body': event,
+        'name': name,
+        'breed': breed,
+        'age': age,
+        'print': print
+    }
+
+</py-repl>
+  <li class="customIndent3">Lets Add Time to the current Time - does not seemt to work with years as it requires more arguments to work</li>
+
+    <li class="customIndent3">Lessons learned: </li>
+  </div>
+
+
+
+
+<!--- End Content-->
+</div>
+
+</body>
+</html>
