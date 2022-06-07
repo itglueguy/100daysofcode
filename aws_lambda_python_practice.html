@@ -54,6 +54,14 @@ lambda_handler(event,context)
   <li class="customIndent3">Let me implement my own simple function - that took way too long</li>
 
 <py-repl>
+event = {
+    "name": "rogue",
+    "breed": "corgi",
+    "age": "3"
+}
+
+context = {}
+
 def lambda_handler(event, context):
     # TODO implement
     name = event['name']
@@ -69,10 +77,11 @@ def lambda_handler(event, context):
         'print': print
     }
 
+lambda_handler(event, context)
 </py-repl>
   <li class="customIndent3">Lets Add Time to the current Time - does not seemt to work with years as it requires more arguments to work</li>
 
-    <li class="customIndent3">Lessons learned: </li>
+    <li class="customIndent3">Lessons learned: its was a dictionary input and output all along - not json!!</li>
   </div>
 
 
