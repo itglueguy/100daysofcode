@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/png" href="favicon.png" />
+<link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
+<script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+  <link rel="stylesheet" href="stylesheet.css">
+  <py-env>
+    - boto3
+    - pandas
+  </py-env>
+</head>
+<body>
+
+  <div class="topnav">
+    <a class="active" href="https://itglueguy.github.io/100daysofcode" class="nav-link">100 Days of Coding Challenge - Python, Cloudformation, and Other Topics </a>
+    <a href="https://www.100daysofcode.com" class="nav-link">About the 100 Day Coding Challenge</a>
+    <a href="https://www.linkedin.com/in/tonivnguyen" class="nav-link">Linkedin</a>
+    <button onClick="window.location.href=window.location.href" class="button">Start Over</button>
+    </div>
+
+<div style="padding-left:16px">
+<!--- Start Content-->
+<h4 class="customIndent1"><b>100 Days of Code - Day 11 - Practicing cloudformation</b></h4>
+<li class="customIndent2">Tip: press Shift-ENTER to evaluate a cell</li>
+<br>
+
+ <div>
+  <h1 class="customIndent3"><b>Create the following simple cloudformation template in python using boto3</b></h1>
+  <li class="customIndent3">I have been avoiding cloudformation as i thought its only releavant to know terraform</li>
+  <li class="customIndent3">Since instructions are scant to create something in yaml, it seems they are written manually</li>
+    <py-repl>
+AWSTemplateFormatVersion: 2010-09-09
+Description: 'AWS CloudFormation Sample Template:
+  Sample template which will create a bucket policy to enable cross account
+  acccess. The template requires you to provide an AWS account ID to provide
+  cross account access to, and the name of the target bucket.'
+Parameters:
+  BucketName:
+    Type: String
+    Description: 'The existing S3 Bucket to create the policy for'
+  PublisherAccountID:
+    Type: String
+    Description: 'The AWS account ID with whom you are sharing access'
+Resources:
+  S3BUCKETPOL:
+    Type: 'AWS::S3::BucketPolicy'
+    Properties:
+      Bucket: !Ref BucketName
+      PolicyDocument:
+        Id: CrossAccessPolicy
+        Version: "2012-10-17"
+        Statement:
+          - Sid: CrossAccPolicyDoc
+            Action: "s3:ListBucket"
+            Effect: Allow
+            Resource: !Sub 'arn:aws:s3:::${BucketName}'
+            Principal:
+              AWS: !Join ['', ["arn:aws:iam::", !Ref PublisherAccountID, ":root"]]
+          - Sid: CrossAccPolicyDoc
+            Action: "s3:GetObject"
+            Effect: Allow
+            Resource: !Sub 'arn:aws:s3:::${BucketName}/*'
+            Principal:
+              AWS: !Join ['', ["arn:aws:iam::", !Ref PublisherAccountID, ":root"]]
+Outputs:
+  Bucket:
+    Description: S3 Bucket Name
+    Value: !Ref BucketName
+  BucketPolicy:
+    Description: S3 Bucket Policy Name
+    Value: !Ref S3BUCKETPOL
+
+    </py-repl>
+  <li class="customIndent3">More relevant is show to convert from json to yaml and back</li>
+
+<py-repl>
+import json
+import yaml
+
+sample = {
+  "foo": "bar",
+  "baz": [
+    "qux",
+    "quxx"
+  ],
+  "corge": None,
+  "grault": 1,
+  "garply": True,
+  "waldo": "false",
+  "fred": "undefined",
+  "emptyArray": [],
+  "emptyObject": {},
+  "emptyString": ""
+}
+
+# dict to json
+json_obj = json.dumps(sample)
+print('json_obj =', json_obj)
+
+ydump = yaml.dump(sample, default_flow_style=False)
+print('ydump=',ydump)
+
+</py-repl>
+  <li class="customIndent3">Yaml to json conversion</li>
+      <py-repl>
+
+    </py-repl>
+
+      <li class="customIndent3">Sincei already did add and remove time, lets see how to do that with years</li>
+      <py-repl>
+
+
+
+    <li class="customIndent3">Lessons learned: </li>
+  </div>
+
+
+
+
+<!--- End Content-->
+</div>
+
+</body>
+</html>
