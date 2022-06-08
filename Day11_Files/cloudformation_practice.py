@@ -38,3 +38,15 @@ print('json_obj =', json_obj)
 
 ydump = yaml.dump(json_data, default_flow_style=False)
 print('ydump=',ydump)
+
+
+#------------------------------------------------------------------------------------
+
+# Yaml to JSON Conversion
+import yaml
+import json
+
+with open('s3_cloudformation.yml', 'r') as file:
+    configuration = yaml.safe_load(file)
+    print(configuration)
+

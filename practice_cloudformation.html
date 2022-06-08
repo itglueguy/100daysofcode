@@ -71,7 +71,6 @@ Outputs:
   BucketPolicy:
     Description: S3 Bucket Policy Name
     Value: !Ref S3BUCKETPOL
-
     </py-repl>
   <li class="customIndent3">More relevant is show to convert from json to yaml and back</li>
 
@@ -105,7 +104,13 @@ print('ydump=',ydump)
 </py-repl>
   <li class="customIndent3">Yaml to json conversion</li>
       <py-repl>
+# Yaml to JSON Conversion
+import yaml
+import json
 
+with open('s3_cloudformation.yml', 'r') as file:
+    configuration = yaml.safe_load(file)
+    print(configuration)
     </py-repl>
 
       <li class="customIndent3">Sincei already did add and remove time, lets see how to do that with years</li>
