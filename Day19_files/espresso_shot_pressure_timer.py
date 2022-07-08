@@ -1,4 +1,4 @@
-# Goal: Implement a Timer in which it presses 3 buttons and allows to define 3 different pump profiles
+# Goal: Implement a Timer in which depending on which of 3 buttons is pressed and allows to define 3 different pump profiles
 # btn_manual_control - Just turns on the LED / relay
 # btn_profile_1 - pre-infuses for 10 seconds, runs for 30 seconds, turns off
 # btn_profile_2 - pre-infuses for 30 seconds, runs for 30 seconds, turns off
