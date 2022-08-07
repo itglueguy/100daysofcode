@@ -32,6 +32,7 @@ profile_1 = [{"seconds": 5,"duty_cycle": 25},{"seconds": 5,"duty_cycle": 50},{"s
 # Profile 2
 profile_1 = [{"seconds": 5,"duty_cycle": 25},{"seconds": 5,"duty_cycle": 50},{"seconds": 20,"duty_cycle": 100}]
 
+btn_profile_1.value = '1'
 
 while True:
     if btn_manual_control.value:
