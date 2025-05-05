@@ -1,0 +1,115 @@
+I used Google Gemini to generate a template
+
+Goal: Create a HTML Template that can accomplish the intended functionality. Re-prompt
+until we are done with it.
+
+Tasks
+-Record Audio
+-Display an Image and text
+-be able to step through the questions from the input Text File
+
+
+# Lets get some code that allows us to record audio from a microphone
+generate html which allows microphone recording to a file
+
+# The only issue is the file needs to be downloaded manually. prompted to download it automatically
+please also download the audio file automatically
+
+# It worked, but i want to make sure there is a timestamp in the file name that is downloaded
+with the downloaded file, include a timestamp in the file name
+
+# I want to show an image and some text eventually
+above the code, include a place holder for an image and text that is H2 size
+
+# Most of the functionality is there; Lets make it look like a modern web application
+include some css formatting to make it look like a modern web application
+
+# Cool! Lets make it less annoying with the microphone preference without having to be re-prompted
+include functionality to remember preferences related to using the microphone without having the user to be re-prompted
+
+# The intended functionality didn't seem to work. lets remove it
+remove functionality to remember preferences related to using the microphone without having the user to be re-prompted
+
+# So when the stop recording button is pressed, show a next button
+after the stop recording button is pressed, show a css next button
+
+# lets just have it change some simple text
+Change the text from "Audio Recorder" to "Vibe Interview Griller" and the Title to "Vibe Interview Griller"
+
+# As there are multiple questions, i eventually want to have some page style controls on the left
+When the next button is pressed, it will eventually step to the question page similar to a gallery. Include a page interface controls on the left hand side
+
+# lets see if we can use an input file to help as the data source
+allow the users to load questions, picture image sources, and delay time as input data from a CSV input file to effect the Text Field, image, and count down timer related to the delay time
+
+# the css formatting disappeared. re-include the formatting
+the css formatting disappeared. please re-include it
+
+# were back on track. Now lets see what the CSV Field names should be
+What CSV Field Names can i use in my csv file
+
+# lets make it easier still - lets make it give us the csv file structure
+please show me the csv file as text so i can easily copy and paste it; please consider the image source must work from windows file system image link
+
+# after testing it, the recording audio feature does not work. lets make it work again
+the javascript related to recording microphone audio is no longer working. please fix that
+
+# as it gave me a snippet, i want to just get the overall html code
+please give me the overall html so that i can copy and paste it
+
+# image is too large - lets make it smaller
+limit the size of the images to 512 by 512 pixels
+
+# will make sure to do this better in the future
+please give me the overall html so that i can copy and paste it
+
+# since its an interview, lets remove the previous button
+remove the previous button and give me the overall html so that i can copy and paste it
+
+# lets make the controls a bit more automated
+after the countdown time goes down to zero, remove the start recording button and automatically stop recording and give me the overall html so i can copy and paste it
+
+# i had to manually re-input the javascript to make the recording functionality work again
+<script>
+let mediaRecorder;
+let audioChunks = [];
+let audioStream;
+
+const startBtn = document.getElementById('startRecording');
+const stopBtn = document.getElementById('stopRecording');
+const audioElem = document.getElementById('yourRecording');
+
+startBtn.onclick = async function() {
+    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+        alert('getUserMedia not supported on your browser!');
+        return;
+    }
+    try {
+        audioStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        mediaRecorder = new MediaRecorder(audioStream);
+        audioChunks = [];
+        mediaRecorder.ondataavailable = event => {
+            if (event.data.size > 0) audioChunks.push(event.data);
+        };
+        mediaRecorder.onstop = () => {
+            const audioBlob = new Blob(audioChunks, { type: 'audio/webm' });
+            audioElem.src = URL.createObjectURL(audioBlob);
+        };
+        mediaRecorder.start();
+    } catch (err) {
+        alert('Microphone access denied or not available.');
+    }
+};
+
+stopBtn.onclick = function() {
+    if (mediaRecorder && mediaRecorder.state === 'recording') {
+        mediaRecorder.stop();
+        if (audioStream) {
+            audioStream.getTracks().forEach(track => track.stop());
+        }
+    }
+};
+</script>
+
+# at this point i just manually changed things around as i see fit. Instead of it regenerating the whole things, i will likely have it generate
+the snippets so that i can eventually get it to work properly

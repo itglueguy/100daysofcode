@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+ <html>
+ <head>
+  <title>Vibe Interview Griller - Practice your interview Skills</title>
+  <style>
+   body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    background-color: #f4f7f6;
+    color: #333;
+    line-height: 1.6;
+    display: flex;
+    min-height: 100vh;
+   }
+ 
+
+   .sidebar {
+    width: 200px;
+    background-color: #343a40;
+    color: #fff;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+   }
+ 
+
+   .sidebar h3 {
+    color: #fff;
+    margin-top: 0;
+    margin-bottom: 15px;
+   }
+ 
+
+   .sidebar-button {
+    background-color: #495057;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+    transition: background-color 0.3s ease;
+   }
+ 
+
+   .sidebar-button:hover {
+    background-color: #5a6268;
+   }
+ 
+
+   .main-content {
+    flex-grow: 1;
+    padding: 30px;
+    background-color: #fff;
+   }
+ 
+
+   .question-container {
+    max-width: 700px;
+    margin: 0 auto;
+   }
+ 
+
+   .image-text-wrapper {
+    display: flex;
+    align-items: center;
+    /* Vertically align items */
+    gap: 20px;
+    /* Space between image and text */
+   }
+ 
+
+   .question-container h2 {
+    color: #007bff;
+    margin-top: 0;
+    margin-bottom: 10px;
+    /* Reduced margin */
+   }
+ 
+
+   .image-placeholder {
+    max-width: 384px;
+    max-height: 384px;
+    width: auto;
+    height: auto;
+    margin-bottom: 10px;
+    /* Reduced margin */
+    display: block;
+   }
+ 
+
+   #question-text {
+    flex: 1;
+    /* Allow text to take remaining space */
+   }
+ 
+
+   .timer-container {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+   }
+ 
+
+   #audio-recorder-section {
+    margin-top: 30px;
+   }
+ 
+
+   #audio-recorder-section h1 {
+    color: #2c3e50;
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 1.8em;
+   }
+ 
+
+   #audio-recorder-section button {
+    padding: 12px 24px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 6px;
+    transition: background-color 0.3s ease;
+    margin-right: 10px;
+   }
+ 
+
+   #start-button {
+    background-color: #28a745;
+    color: #fff;
+   }
+ 
+
+   #start-button:hover {
+    background-color: #218838;
+   }
+ 
+
+   #stop-button {
+    background-color: #dc3545;
+    color: #fff;
+   }
+ 
+
+   #stop-button:disabled {
+    background-color: #6c757d;
+    cursor: not-allowed;
+   }
+ 
+
+   #stop-button:hover:enabled {
+    background-color: #c82333;
+   }
+ 
+
+   #next-button {
+    background-color: #007bff;
+    color: #fff;
+    display: none;
+    /* Initially hidden */
+   }
+ 
+
+   #next-button:hover {
+    background-color: #0056b3;
+   }
+ 
+
+   #audio-player {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #e9ecef;
+    border-radius: 6px;
+   }
+ 
+
+   #audio-player h2 {
+    color: #495057;
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 1.2em;
+   }
+ 
+
+   #recorded-audio {
+    width: 100%;
+   }
+ 
+
+   .controls {
+    display: flex;
+    gap: 10px;
+    margin-top: 30px;
+    justify-content: flex-end;
+    /* Align next button to the right */
+   }
+ 
+
+   .controls button {
+    padding: 12px 24px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 6px;
+    transition: background-color 0.3s ease;
+   }
+ 
+
+   .next-question-button {
+    background-color: #007bff;
+    color: #fff;
+display: none;
+   }
+ 
+
+   .next-question-button:hover {
+    background-color: #0056b3;
+   }
+ 
+
+   .hidden {
+    display: none !important;
+   }
+ 
+
+   .countdown-finished #start-button {
+    display: none !important;
+   }
+  </style>
+ </head>
+ 
+
+ <body>
+ 
+
+  <div class="sidebar">
+   <h3>Interview Questions</h3>
+   <div id="sidebar-questions">
+   </div>
+  </div>
+ 
+
+  <div class="main-content">
+   <div class="question-container" id="question-container">
+    <h2>Vibe Interview Griller - Practice your Interview Questions</h2>
+    <div class="image-text-wrapper">
+     <img id="question-image" src="" alt="Question Image" class="image-placeholder hidden">
+     <p id="question-text">Please upload a CSV file by clicking on <b>Choose File</b> on the right to load the interview questions.<img src ='file:///C:/scripts/PSInterviewGriller/pictures/instructions.png' width="100%" height="100%"></p>
+    </div>
+    <div id="timer" class="timer-container hidden"></div>
+ 
+
+    <div id="audio-recorder-section" class="hidden">
+     <h1>Record Your Answer</h1>
+     <button id="start-button">Start Recording</button>
+     <button id="stop-button" disabled>Stop Recording</button>
+ <button id="next-button" disabled style="display: inline-block;">Next</button>
+
+     <div id="audio-player" class="hidden">
+      <h2>Review your Interview Answer Below:</h2>
+      <audio id="recorded-audio" controls></audio>
+     </div>
+    </div>
+ 
+
+    <div class="controls">
+     <button class="next-question-button" disabled>Next Question</button>
+    </div>
+   </div>
+  </div>
+  <input type="file" id="csv-upload" accept=".csv" style="margin: 20px;">
+ 
+
+  <script>
+   let mediaRecorder;
+   let audioChunks = [];
+   const startButton = document.getElementById('start-button');
+   const stopButton = document.getElementById('stop-button');
+   const nextButton = document.getElementById('next-button');
+   const audioPlayerDiv = document.getElementById('audio-player');
+   const recordedAudio = document.getElementById('recorded-audio');
+   const audioRecorderSection = document.getElementById('audio-recorder-section');
+   const nextQuestionButton = document.querySelector('.next-question-button');
+   const csvUpload = document.getElementById('csv-upload');
+   const sidebarQuestionsDiv = document.getElementById('sidebar-questions');
+   const questionImage = document.getElementById('question-image');
+   const questionText = document.getElementById('question-text');
+   const timerDisplay = document.getElementById('timer');
+   const questionContainer = document.getElementById('question-container');
+ 
+
+   let questionsData = [];
+   let currentQuestionIndex = 0;
+   let countdownInterval;
+   let isRecording = false;
+ 
+   function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+   function parseCSV(csvText) {
+    const lines = csvText.trim().split('\n');
+    const headers = lines[0].split(',').map(header => header.trim());
+    const data = [];
+    for (let i = 1; i < lines.length; i++) {
+     const values = lines[i].split(',').map(value => value.trim());
+     const question = {};
+     headers.forEach((header, index) => {
+      question[header] = values[index];
+     });
+     data.push(question);
+    }
+    return data;
+   }
+ 
+
+   function loadQuestionsToSidebar() {
+    sidebarQuestionsDiv.innerHTML = '';
+    questionsData.forEach((question, index) => {
+     const button = document.createElement('button');
+     button.classList.add('sidebar-button');
+     button.dataset.questionIndex = index;
+     button.textContent = `Question ${index + 1}`;
+     button.addEventListener('click', function() {
+      loadQuestion(parseInt(this.dataset.questionIndex));
+     });
+     sidebarQuestionsDiv.appendChild(button);
+    });
+   }
+ 
+
+   function startCountdown(delaySeconds) {
+    clearInterval(countdownInterval);
+    timerDisplay.textContent = `Time remaining to answer the question: ${delaySeconds} seconds`;
+    timerDisplay.classList.remove('hidden');
+    let remainingTime = parseInt(delaySeconds);
+ 
+
+    countdownInterval = setInterval(() => {
+     remainingTime--;
+     timerDisplay.textContent = `Time remaining to answer the question: ${remainingTime} seconds`;
+     if (remainingTime <= 0) {
+      clearInterval(countdownInterval);
+      timerDisplay.textContent = `Times Up!`;
+      // times out for 2 seconds
+      sleep(2000);
+      timerDisplay.classList.add('hidden');
+      questionContainer.classList.add('countdown-finished');
+      if (!isRecording) {
+       startRecording();
+       setTimeout(stopRecordingAndShowPlayback, 100); // Give a small delay to ensure recording starts
+      } else {
+       stopRecordingAndShowPlayback();
+      }
+      nextQuestionButton.disabled = false;
+     }
+    }, 1000);
+    nextButton.disabled = true;
+nextButton.style.display = 'none';
+    nextQuestionButton.disabled = true;
+   }
+ 
+
+   function loadQuestion(index) {
+    if (index >= 0 && index < questionsData.length) {
+     currentQuestionIndex = index;
+     const currentQuestion = questionsData[currentQuestionIndex];
+ 
+
+     questionText.textContent = currentQuestion.question_text || '';
+     if (currentQuestion.image_source) {
+      if (currentQuestion.image_source.startsWith('C:\\')) {
+       questionImage.src = 'file:///' + currentQuestion.image_source.replace(/\\/g, '/');
+      } else {
+       questionImage.src = currentQuestion.image_source;
+      }
+      questionImage.classList.remove('hidden');
+     } else {
+      questionImage.src = '';
+      questionImage.classList.add('hidden');
+     }
+ 
+
+     const delay = parseInt(currentQuestion.delay_seconds);
+     questionContainer.classList.remove('countdown-finished');
+       // This part controls the Countdown timer starts
+     if (!isNaN(delay) && delay > 0) {
+      startCountdown(delay);
+     } else {
+      timerDisplay.classList.add('hidden');
+      nextButton.disabled = true;
+      nextQuestionButton.disabled = false;
+     }
+ 
+
+     // Update active sidebar button
+     const sidebarButtons = document.querySelectorAll('#sidebar-questions .sidebar-button');
+     sidebarButtons.forEach(btn => btn.classList.remove('active'));
+     sidebarButtons[currentQuestionIndex].classList.add('active');
+ 
+
+     nextQuestionButton.textContent = currentQuestionIndex === questionsData.length - 1 ? 'Finish' : 'Next Question';
+     audioRecorderSection.classList.remove('hidden'); // Ensure recorder is visible
+     audioPlayerDiv.classList.add('hidden');
+     startButton.style.display = 'block'; // Make sure start button is visible initially
+     startButton.disabled = false;
+     stopButton.disabled = true;
+     nextButton.style.display = 'none';
+     mediaRecorder = null;
+     audioChunks = [];
+     recordedAudio.src = '';
+     isRecording = false;
+ 
+
+     document.title = `Vibe Interview Griller - Question ${currentQuestionIndex + 1}`;
+     document.querySelector('.question-container h2').textContent = `Question ${currentQuestionIndex + 1}`;
+    }
+   }
+ 
+
+   csvUpload.addEventListener('change', function(event) {
+    const file = event.target.files[0];
+    if (file) {
+     const reader = new FileReader();
+     reader.onload = function(e) {
+      const csvData = e.target.result;
+      questionsData = parseCSV(csvData);
+      loadQuestionsToSidebar();
+      if (questionsData.length > 0) {
+       loadQuestion(0); // Load the first question
+      } else {
+       questionText.textContent = 'Error: No valid questions found in the CSV file.';
+      }
+     };
+     reader.onerror = function() {
+      questionText.textContent = 'Error reading the CSV file.';
+     };
+     reader.readAsText(file);
+    }
+   });
+ 
+
+   async function startRecording() {
+    startButton.disabled = true;
+    isRecording = true;
+    try {
+     const stream = await navigator.mediaDevices.getUserMedia({
+      audio: true
+     });
+     mediaRecorder = new MediaRecorder(stream);
+     audioChunks = [];
+ 
+
+     mediaRecorder.ondataavailable = event => {
+      if (event.data.size > 0) {
+       audioChunks.push(event.data);
+      }
+     };
+ 
+
+     mediaRecorder.onstop = () => {
+      isRecording = false;
+      const audioBlob = new Blob(audioChunks, {
+       type: 'audio/webm'
+      });
+      const audioUrl = URL.createObjectURL(audioBlob);
+      recordedAudio.src = audioUrl;
+      audioPlayerDiv.classList.remove('hidden');
+      startButton.style.display = 'none'; // Hide start button after recording
+      stopButton.disabled = true;
+      nextButton.style.display = 'none';
+
+      // attempt to display the next question button again
+      nextQuestionButton.style.display = 'inline-block'
+
+      const now = new Date();
+      const year = now.getFullYear();
+      const month = String(now.getMonth() + 1).padStart(2, '0');
+      const day = String(now.getDate()).padStart(2, '0');
+      const hours = String(now.getHours()).padStart(2, '0');
+      const minutes = String(now.getMinutes()).padStart(2, '0');
+      const seconds = String(now.getSeconds()).padStart(2, '0');
+      const timestamp = `${year}-${month}-${day}_${hours}-${minutes}-${seconds}`;
+      const filename = `vibe_interview_question_${currentQuestionIndex + 1}_${timestamp}.webm`;
+ 
+
+      const a = document.createElement('a');
+      a.href = audioUrl;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(audioUrl);
+ 
+
+      stream.getTracks().forEach(track => track.stop());
+     };
+ 
+
+     mediaRecorder.start();
+     stopButton.disabled = false;
+     nextButton.style.display = 'none';
+    } catch (error) {
+     console.error('Error accessing microphone:', error);
+     alert('Unable to access the microphone. Please ensure it is enabled in your browser settings.');
+     startButton.disabled = false;
+     nextButton.style.display = 'none';
+     isRecording = false;
+    }
+   }
+ 
+
+   function stopRecording() {
+    if (mediaRecorder && mediaRecorder.state === 'recording') {
+     mediaRecorder.stop();
+    }
+   }
+ 
+
+   function stopRecordingAndShowPlayback() {
+    stopRecording();
+   }
+ 
+
+   nextButton.addEventListener('click', () => {
+    loadQuestion(currentQuestionIndex + 1);
+   });
+ 
+
+   nextQuestionButton.addEventListener('click', () => {
+    loadQuestion(currentQuestionIndex + 1);
+   });
+ 
+
+   startButton.addEventListener('click', startRecording);
+   stopButton.addEventListener('click', stopRecording);
+  </script>
+ 
+
+ </body>
+ 
+
+ </html>
