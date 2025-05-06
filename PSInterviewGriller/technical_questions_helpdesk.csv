@@ -1,0 +1,20 @@
+question_text,image_source,delay_seconds
+We are now going to start the technical interview.,C:\scripts\PSInterviewGriller\pictures\interview_room.jpg,10
+What is the port for SMB?,C:\scripts\PSInterviewGriller\pictures\calm_interviewer.png,30
+What is the port for HTTP and HTTPS?,C:\scripts\PSInterviewGriller\pictures\calm_interviewer.png,30
+What does RDP stand for?,C:\scripts\PSInterviewGriller\pictures\calm_interviewer.png,30
+if someone had a problem with a printer; what should you try?,C:\scripts\PSInterviewGriller\pictures\calm_interviewer.png,30
+if someone had a problem their internet on a program; what should you try?,C:\scripts\PSInterviewGriller\pictures\calm_interviewer.png,30
+What are things that should be tried when troubleshooting file shares?,C:\scripts\PSInterviewGriller\pictures\calm_interviewer.png,30
+What is an MDM System?,C:\scripts\PSInterviewGriller\pictures\calm_interviewer.png,30
+What is Microsoft Intune used for?,C:\scripts\PSInterviewGriller\pictures\calm_interviewer.png,30
+Detail the components and process to build a desktop computer?,C:\scripts\PSInterviewGriller\pictures\calm_interviewer.png,120
+How many ip Addresses are in a /23 subnet?,C:\scripts\PSInterviewGriller\pictures\calm_interviewer.png,20
+What is the purpose of a Vlan?,C:\scripts\PSInterviewGriller\pictures\calm_interviewer.png,30
+What is the purpose Active Directory?,C:\scripts\PSInterviewGriller\pictures\calm_interviewer.png,30
+What controls the startup sequences on a windows pc?,C:\scripts\PSInterviewGriller\pictures\calm_interviewer.png,15
+What is the difference between a hub / switch / router?,C:\scripts\PSInterviewGriller\pictures\calm_interviewer.png,30
+What is the difference between a MDF/IDF?,C:\scripts\PSInterviewGriller\pictures\calm_interviewer.png,30
+What is the SLA and why is it important in IT?,C:\scripts\PSInterviewGriller\pictures\calm_interviewer.png,30
+What is BYOD and why is it recommended and not recommended?,C:\scripts\PSInterviewGriller\pictures\calm_interviewer.png,120
+What is SNMP used for?,C:\scripts\PSInterviewGriller\pictures\calm_interviewer.png,60
