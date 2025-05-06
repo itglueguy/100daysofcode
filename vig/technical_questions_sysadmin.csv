@@ -1,0 +1,17 @@
+question_text,image_source,delay_seconds
+We are now going to start the technical interview.,https://itglueguy.github.io/100daysofcode/vig/interview_room.jpg,10
+Explain to me how you would join a windows pc to the domain?,https://itglueguy.github.io/100daysofcode/vig/calm_interviewer.png,120
+What steps would you take to optimize license usage?,https://itglueguy.github.io/100daysofcode/vig/calm_interviewer.png,120
+What are some pros and cons of using the cloud?,https://itglueguy.github.io/100daysofcode/vig/calm_interviewer.png,120
+why would you implement file archiving? Please give an example,https://itglueguy.github.io/100daysofcode/vig/calm_interviewer.png,60
+Explain to me how you would deploy an update for a production critical application?,https://itglueguy.github.io/100daysofcode/vig/calm_interviewer.png,60
+Please explain how to create a SMB file Share on Windows,https://itglueguy.github.io/100daysofcode/vig/calm_interviewer.png,60
+Please explain how to create a SMB file Share on Linux,https://itglueguy.github.io/100daysofcode/vig/tricky_interviewer.png,60
+what is the purpose of the host file in windows,https://itglueguy.github.io/100daysofcode/vig/calm_interviewer.png,60
+when should you utilize onprem or cloud infrastructure for hosting purposes?,https://itglueguy.github.io/100daysofcode/vig/calm_interviewer.png,60
+Please explain - when a user visits a SSL website - how does the IP packets get to the destination and back?,https://itglueguy.github.io/100daysofcode/vig/calm_interviewer.png,60
+How would you setup hybrid infrastructure between Onprem and the cloud?,https://itglueguy.github.io/100daysofcode/vig/calm_interviewer.png,60
+How would you get developers to follow compliance standards?,https://itglueguy.github.io/100daysofcode/vig/calm_interviewer.png,60
+What is the MTU for SAN Storage?,https://itglueguy.github.io/100daysofcode/vig/calm_interviewer.png,60
+Which version of SNMP is considered secure?,https://itglueguy.github.io/100daysofcode/vig/calm_interviewer.png,60
+If you had only 3 Nodes of your AD Forest in Los Angeles - how would you ensure your users in Boston can get those entries synced in less than 10 minutes?,https://itglueguy.github.io/100daysofcode/vig/calm_interviewer.png,60
