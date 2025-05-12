@@ -1,0 +1,14 @@
+question_text,image_source,delay_seconds
+What is a route table?,https://itglueguy.github.io/100daysofcode/vig/interview_room.jpg,10
+What is the difference between a load balancer and a proxy?,https://itglueguy.github.io/100daysofcode/vig/interview_room.jpg,30
+What is a SFP? GBIC?,https://itglueguy.github.io/100daysofcode/vig/interview_room.jpg,30
+What is a difference between Star topology and a ring network?,https://itglueguy.github.io/100daysofcode/vig/interview_room.jpg,30
+What is the difference between traditional firewalls and next generation firewall appliances?,https://itglueguy.github.io/100daysofcode/vig/interview_room.jpg,30
+What is a CDN and what is it used for?,https://itglueguy.github.io/100daysofcode/vig/interview_room.jpg,30
+What is the purpose of QOS?,https://itglueguy.github.io/100daysofcode/vig/interview_room.jpg,30
+What is the purpose of NAT in a a network?,https://itglueguy.github.io/100daysofcode/vig/interview_room.jpg,30
+What is the BGP protocol do?,https://itglueguy.github.io/100daysofcode/vig/calm_interviewer.png,60
+What is the EIGRP protocol do?,https://itglueguy.github.io/100daysofcode/vig/calm_interviewer.png,60
+What is the OSPF protocol do?,https://itglueguy.github.io/100daysofcode/vig/calm_interviewer.png,60
+What is the spanning tree protocol do?,https://itglueguy.github.io/100daysofcode/vig/calm_interviewer.png,60
+What is LACP?,https://itglueguy.github.io/100daysofcode/vig/calm_interviewer.png,60
