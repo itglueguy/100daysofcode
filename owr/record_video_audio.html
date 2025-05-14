@@ -182,10 +182,12 @@
     </div>
     <input type="file" id="csvUpload" accept=".csv" />
     <ol style="margin-top: 10px; text-align: left; margin-left: 80px;">
-        <li>Upload the CSV File first.</li>
+        <li><a href="https://github.com/itglueguy/100daysofcode/blob/main/owr/one_way_video_interview.csv" target="_blank">Download the CSV File</a> first.</li>
+        <li>Upload the modified CSV by choosing Choose File.</li>
         <li>Press Start Recording to initiate a recording.</li>
         <li>Press Stop Recording to stop the recording.</li>
         <li>Press Next Question to go to the next question.</li>
+        <li>You can review the downloaded file in your Downloads Folder.</li>
     </ol>
     <button id="downloadRecording" style="display: none;">Download Recording</button>
 
@@ -232,8 +234,14 @@
 
             const reader = new FileReader();
             reader.onload = async (e) => {
-                const csvData = e.target.result;
-                await loadQuestions(csvData);
+                try{
+                    const csvData = e.target.result;
+                    await loadQuestions(csvData);
+                  } catch(error){
+                    console.log(error);
+                    alert('Failed to load questions. Please ensure the CSV file is correctly formatted and contains the required headers.');
+                    questions = [];
+                  }
             };
             reader.onerror = () => {
                 alert('Error reading file. Please try again.');
@@ -245,12 +253,24 @@
         async function loadQuestions(csvData) {
             try {
                 const lines = csvData.trim().split('\n');
+                if (lines.length <= 1) {
+                    throw new Error('CSV file is empty or contains only headers.');
+                }
                 const headers = lines[0].split(',');
+                if (headers.length === 0) {
+                    throw new Error('CSV file headers are missing or invalid.');
+                }
+                const requiredHeaders = ['question'];
+                const missingHeaders = requiredHeaders.filter(header => !headers.map(h => h.trim()).includes(header));
+                if (missingHeaders.length > 0) {
+                    throw new Error(`CSV file is missing required headers: ${missingHeaders.join(', ')}`);
+                }
+
                 questions = lines.slice(1).map(line => {
                     const values = line.split(',');
                     const questionData = {};
                     headers.forEach((header, index) => {
-                        questionData[header.trim()] = values[index].trim();
+                        questionData[header.trim()] = values[index]?.trim() || '';
                     });
                     return questionData;
                 });
@@ -264,8 +284,7 @@
 
             } catch (error) {
                 console.error('Error loading questions:', error);
-                alert('Failed to load questions. Please ensure questions.csv is formatted correctly.');
-                return false;
+                throw error;
             }
             return true;
         }
