@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>One Way Video Recorder</title>
+    <title>One Way Video Recorder - Mock Interviewer</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         body {
@@ -11,11 +11,11 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            height: 100vh;
+            justify-content: flex-start; /* Changed to flex-start to move items to the top */
+            min-height: 100vh; /* Changed to min-height to ensure full viewport height */
             margin: 0;
-            background-color: #f3f4f6; /* Light background */
-            color: #1f2937; /* Darker text for better contrast */
+            background-color: #f3f4f6;
+            color: #1f2937;
         }
 
         #recordingArea {
@@ -24,19 +24,19 @@
             align-items: center;
             margin-bottom: 20px;
             padding: 20px;
-            background-color: #fff; /* White container for recording area */
-            border-radius: 12px; /* Rounded corners */
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* Shadow for depth */
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
         }
 
         video {
-            width: 640px; /* Increased size */
+            width: 640px;
             height: 480px;
-            border: 1px solid #e0e0e0; /* Lighter border */
+            border: 1px solid #e0e0e0;
             border-radius: 8px;
             margin-bottom: 20px;
             background-color: #000;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08); /* Subtle shadow */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
         }
 
         button {
@@ -46,19 +46,19 @@
             margin: 10px;
             border-radius: 8px;
             border: none;
-            background-color: #4CAF50; /* Green */
+            background-color: #4CAF50;
             color: #fff;
-            transition: background-color 0.3s ease; /* Smooth transition */
+            transition: background-color 0.3s ease;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
         }
 
         button:hover {
-            background-color: #45a049; /* Darker green */
+            background-color: #45a049;
             opacity: 0.9;
         }
 
         button:disabled {
-            background-color: #b2b2b2; /* Gray */
+            background-color: #b2b2b2;
             color: #fff;
             cursor: not-allowed;
             opacity: 0.7;
@@ -71,11 +71,11 @@
         }
 
         #stopRecording, #downloadRecording, #nextQuestion {
-            background-color: #f44336; /* Red */
+            background-color: #f44336;
         }
 
         #stopRecording:hover, #downloadRecording:hover, #nextQuestion:hover {
-            background-color: #d32f2f; /* Darker red */
+            background-color: #d32f2f;
         }
 
         #downloadRecording {
@@ -91,21 +91,21 @@
             border-radius: 12px;
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
             display: none;
-            width: 80%; /* Increased width */
-            max-width: 600px; /* Maximum width */
+            width: 80%;
+            max-width: 600px;
         }
 
         #questionText {
-            font-size: 28px; /* Increased font size */
+            font-size: 28px;
             margin-bottom: 20px;
-            color: #2c3e50; /* Dark blue-gray */
-            font-weight: 500;  /* Medium font weight */
+            color: #2c3e50;
+            font-weight: 500;
         }
 
         #answerInput {
             display: none;
             padding: 12px;
-            width: calc(100% - 40px); /* Adjusted width for padding */
+            width: calc(100% - 40px);
             margin: 15px auto;
             border-radius: 8px;
             border: 1px solid #e0e0e0;
@@ -115,15 +115,15 @@
 
         #answerInput:focus {
             outline: none;
-            border-color: #4CAF50; /* Highlight on focus */
-            box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2); /* Add a subtle shadow */
+            border-color: #4CAF50;
+            box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
         }
 
         #timerDisplay {
             font-size: 24px;
             font-weight: bold;
             margin-bottom: 25px;
-            color: #3498db; /* Blue */
+            color: #3498db;
         }
 
         #nextQuestion {
@@ -165,10 +165,53 @@
                 font-size: 20px;
             }
         }
+
+        #tipsContainer {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #e0f7fa;
+            border-radius: 12px;
+            border: 1px solid #b2ebf2;
+            color: #006064;
+            width: 80%;
+            max-width: 600px;
+            text-align: left;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+        }
+
+        #tipsContainer h2 {
+            font-size: 24px;
+            color: #00838f;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        #tipsContainer ol {
+            list-style-position: inside;
+            padding-left: 0;
+        }
+
+        #tipsContainer li {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 12px;
+        }
+
+        #tipsContainer li:last-child {
+            margin-bottom: 0;
+        }
+
+        h1 {
+            font-size: 32px;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            margin-top: 20px; /* Added margin-top to create space between heading and top of viewport */
+        }
     </style>
 </head>
 <body>
-    <h1 style="font-size: 32px; font-weight: bold; color: #2c3e50; margin-bottom: 20px;">One Way Video Recorder</h1>
+    <h1 style="font-size: 32px; font-weight: bold; color: #2c3e50; margin-bottom: 20px;">One Way Video Recorder / Mock Interviewer</h1>
     <div id="recordingArea">
         <video id="preview" autoplay muted></video>
         <button id="startRecording">Start Recording</button>
@@ -190,6 +233,16 @@
         <li>You can review the downloaded file in your Downloads Folder.</li>
     </ol>
     <button id="downloadRecording" style="display: none;">Download Recording</button>
+
+    <div id="tipsContainer">
+        <h2>Interview Tips</h2>
+        <ol>
+            <li>Smile when answering interview questions.</li>
+            <li>Use the STAR (Situation, Task, Action, Results) format when answering questions.</li>
+            <li>If you don't know - say you don't know.</li>
+            <li>The Rounds are typically A) HR Screen/Technical Weedout/Meet the Team, B) Technical Interview Round, and C) Hiring Manager / Management Group Rounds</li>
+        </ol>
+    </div>
 
     <script>
         const preview = document.getElementById('preview');
@@ -499,23 +552,6 @@
                 answers: userAnswers,
                 questions: questions
             };
-
-            const resultsJson = JSON.stringify(results);
-
-            const blob = new Blob([resultsJson], { type: 'application/json' });
-            const url = URL.createObjectURL(blob);
-
-            const a = document.createElement('a');
-            a.href = url;
-            a.style.display = 'none';
-            a.download = 'quiz_results.json';
-            document.body.appendChild(a);
-            a.click();
-
-            setTimeout(() => {
-                document.body.removeChild(a);
-                URL.revokeObjectURL(url);
-            }, 100);
 
             console.log(results);
         }
