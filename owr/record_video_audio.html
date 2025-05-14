@@ -407,6 +407,17 @@
                 isRecording = false;
             }
 
+            // Speak the next question using Text-to-Speech
+            if ('speechSynthesis' in window) {
+                const nextQuestionIndex = currentQuestionIndex + 1;
+                if (nextQuestionIndex < questions.length) {
+                    const utterance = new SpeechSynthesisUtterance(questions[nextQuestionIndex].question);
+                    speechSynthesis.speak(utterance);
+                }
+            } else {
+                console.error('Speech synthesis is not supported in this browser.');
+            }
+
             currentQuestionIndex++;
             if (currentQuestionIndex < questions.length) {
                 recordedChunks = [];
