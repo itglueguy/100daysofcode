@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Webcam and Microphone Recorder</title>
+    <title>One Way Video Recorder</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         body {
@@ -30,8 +30,8 @@
         }
 
         video {
-            width: 400px; /* Increased size */
-            height: 300px;
+            width: 640px; /* Increased size */
+            height: 480px;
             border: 1px solid #e0e0e0; /* Lighter border */
             border-radius: 8px;
             margin-bottom: 20px;
@@ -181,6 +181,12 @@
         <button id="nextQuestion" disabled>Next Question</button>
     </div>
     <input type="file" id="csvUpload" accept=".csv" />
+    <ol style="margin-top: 10px; text-align: left; margin-left: 80px;">
+        <li>Upload the CSV File first.</li>
+        <li>Press Start Recording to initiate a recording.</li>
+        <li>Press Stop Recording to stop the recording.</li>
+        <li>Press Next Question to go to the next question.</li>
+    </ol>
     <button id="downloadRecording" style="display: none;">Download Recording</button>
 
     <script>
@@ -308,7 +314,6 @@
                 displayQuestion();
             } catch (error) {
                 console.error('Error accessing media devices:', error);
-                alert('Unable to access webcam and microphone. Please check your browser permissions.');
             }
         }
 
@@ -427,7 +432,6 @@
 
             } catch (error) {
                 console.error('Error accessing media devices:', error);
-                alert('Unable to access webcam and microphone. Please check your browser permissions.');
             }
         }
 
@@ -446,7 +450,7 @@
             a.style.display = 'none';
             // Generate filename with question number and timestamp
             const questionNumber = currentQuestionIndex > 0 ? currentQuestionIndex : 1;
-            const timestamp = new Date().toISOString().replace(/[-:]/g, '').slice(0, -5); // Format: YYYYMMDDTHHMMSS
+            const timestamp = new Date().toISOString().replace(/[-:]/g, '').slice(0, -5); // Format:MMDDTHHMMSS
             a.download = `question_${questionNumber}_${timestamp}.webm`;
             document.body.appendChild(a);
             a.click();
