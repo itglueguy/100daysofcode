@@ -228,7 +228,7 @@
         <li><a href="https://github.com/itglueguy/100daysofcode/blob/main/owr/one_way_video_interview.csv" target="_blank">Download the CSV File</a> first.</li>
         <li>Upload the modified CSV by choosing Choose File.</li>
         <li>Press Start Recording to initiate a recording.</li>
-        <li>Press Stop Recording to stop the recording.</li>
+        <li>Press Stop Recording to stop the recording - It will automatically stop recording after the time remaining goes to 0.</li>
         <li>Press Next Question to go to the next question.</li>
         <li>You can review the downloaded file in your Downloads Folder.</li>
     </ol>
@@ -436,6 +436,7 @@
                 if (timeRemaining <= 0) {
                     clearInterval(timerInterval);
                     recordAnswer();
+                    stopRecording(); // Stop recording when time is up
                     nextQuestion();
                 }
             }, 1000);
