@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webcam and Microphone Recorder</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f3f4f6; /* Light background */
+            color: #1f2937; /* Darker text for better contrast */
+        }
+
+        #recordingArea {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 20px;
+            background-color: #fff; /* White container for recording area */
+            border-radius: 12px; /* Rounded corners */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* Shadow for depth */
+        }
+
+        video {
+            width: 400px; /* Increased size */
+            height: 300px;
+            border: 1px solid #e0e0e0; /* Lighter border */
+            border-radius: 8px;
+            margin-bottom: 20px;
+            background-color: #000;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08); /* Subtle shadow */
+        }
+
+        button {
+            padding: 12px 24px;
+            font-size: 18px;
+            cursor: pointer;
+            margin: 10px;
+            border-radius: 8px;
+            border: none;
+            background-color: #4CAF50; /* Green */
+            color: #fff;
+            transition: background-color 0.3s ease; /* Smooth transition */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        button:hover {
+            background-color: #45a049; /* Darker green */
+            opacity: 0.9;
+        }
+
+        button:disabled {
+            background-color: #b2b2b2; /* Gray */
+            color: #fff;
+            cursor: not-allowed;
+            opacity: 0.7;
+            box-shadow: none;
+        }
+
+        button:disabled:hover {
+            background-color: #b2b2b2;
+            opacity: 0.7;
+        }
+
+        #stopRecording, #downloadRecording, #nextQuestion {
+            background-color: #f44336; /* Red */
+        }
+
+        #stopRecording:hover, #downloadRecording:hover, #nextQuestion:hover {
+            background-color: #d32f2f; /* Darker red */
+        }
+
+        #downloadRecording {
+            display: none;
+            margin-top: 20px;
+        }
+
+        #questionContainer {
+            margin-top: 30px;
+            text-align: center;
+            padding: 25px;
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            display: none;
+            width: 80%; /* Increased width */
+            max-width: 600px; /* Maximum width */
+        }
+
+        #questionText {
+            font-size: 28px; /* Increased font size */
+            margin-bottom: 20px;
+            color: #2c3e50; /* Dark blue-gray */
+            font-weight: 500;  /* Medium font weight */
+        }
+
+        #answerInput {
+            display: none;
+            padding: 12px;
+            width: calc(100% - 40px); /* Adjusted width for padding */
+            margin: 15px auto;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+            font-size: 18px;
+            transition: border-color 0.2s ease;
+        }
+
+        #answerInput:focus {
+            outline: none;
+            border-color: #4CAF50; /* Highlight on focus */
+            box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2); /* Add a subtle shadow */
+        }
+
+        #timerDisplay {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 25px;
+            color: #3498db; /* Blue */
+        }
+
+        #nextQuestion {
+            margin-top: 20px;
+        }
+
+        #csvUpload {
+            margin-top: 20px;
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            background-color: #fff;
+        }
+
+        #csvUpload:focus {
+            outline: none;
+            border-color: #4CAF50;
+            box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+        }
+
+        /* Responsive adjustments */
+        @media screen and (max-width: 768px) {
+            #recordingArea {
+                width: 95%;
+            }
+            video {
+                width: 100%;
+                height: auto;
+            }
+            #questionContainer {
+                width: 95%;
+            }
+            button {
+                font-size: 16px;
+                padding: 10px 20px;
+            }
+            #questionText{
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1 style="font-size: 32px; font-weight: bold; color: #2c3e50; margin-bottom: 20px;">One Way Video Recorder</h1>
+    <div id="recordingArea">
+        <video id="preview" autoplay muted></video>
+        <button id="startRecording">Start Recording</button>
+        <button id="stopRecording" disabled>Stop Recording</button>
+    </div>
+    <div id="questionContainer">
+        <div id="timerDisplay"></div>
+        <div id="questionText"></div>
+        <div id="answerInput" placeholder="Enter your answer here"></div>
+        <button id="nextQuestion" disabled>Next Question</button>
+    </div>
+    <input type="file" id="csvUpload" accept=".csv" />
+    <button id="downloadRecording" style="display: none;">Download Recording</button>
+
+    <script>
+        const preview = document.getElementById('preview');
+        const startButton = document.getElementById('startRecording');
+        const stopButton = document.getElementById('stopRecording');
+        const downloadButton = document.getElementById('downloadRecording');
+        const questionContainer = document.getElementById('questionContainer');
+        const questionTextElement = document.getElementById('questionText');
+        const answerInput = document.getElementById('answerInput');
+        const nextButton = document.getElementById('nextQuestion');
+        const timerDisplay = document.getElementById('timerDisplay');
+        const csvUpload = document.getElementById('csvUpload');
+
+        let mediaRecorder;
+        let recordedChunks = [];
+        let stream = null;
+        let questions = [];
+        let currentQuestionIndex = 0;
+        let userAnswers = [];
+        let questionStartTime;
+        let timerInterval;
+        let timeLimit = 60;
+        let isRecording = false;
+
+        startButton.addEventListener('click', startRecording);
+        stopButton.addEventListener('click', stopRecording);
+        downloadButton.addEventListener('click', downloadRecording);
+        nextButton.addEventListener('click', handleNextQuestion);
+        csvUpload.addEventListener('change', handleFileUpload);
+
+        async function handleFileUpload(event) {
+            const file = event.target.files[0];
+            if (!file) {
+                alert('Please select a CSV file.');
+                return;
+            }
+
+            if (file.type !== 'text/csv') {
+                alert('Invalid file type. Please upload a .csv file.');
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = async (e) => {
+                const csvData = e.target.result;
+                await loadQuestions(csvData);
+            };
+            reader.onerror = () => {
+                alert('Error reading file. Please try again.');
+            };
+            reader.readAsText(file);
+        }
+
+
+        async function loadQuestions(csvData) {
+            try {
+                const lines = csvData.trim().split('\n');
+                const headers = lines[0].split(',');
+                questions = lines.slice(1).map(line => {
+                    const values = line.split(',');
+                    const questionData = {};
+                    headers.forEach((header, index) => {
+                        questionData[header.trim()] = values[index].trim();
+                    });
+                    return questionData;
+                });
+
+                if (questions.length === 0) {
+                    throw new Error('No questions found in CSV file.');
+                }
+                if (!headers.includes("timeLimit")) {
+                    console.warn("questions.csv does not contain 'timeLimit' header. Defaulting to 60 seconds per question.");
+                }
+
+            } catch (error) {
+                console.error('Error loading questions:', error);
+                alert('Failed to load questions. Please ensure questions.csv is formatted correctly.');
+                return false;
+            }
+            return true;
+        }
+
+
+
+        async function startRecording() {
+            if (questions.length === 0) {
+                alert('Please upload a CSV file containing questions.');
+                return;
+            }
+
+            try {
+                stream = await navigator.mediaDevices.getUserMedia({
+                    video: true,
+                    audio: {
+                        sampleRate: 48000,
+                        channelCount: 2,
+                        echoCancellation: true,
+                        noiseSuppression: true
+                    }
+                });
+
+                preview.srcObject = stream;
+                preview.play();
+
+                recordedChunks = [];
+                mediaRecorder = new MediaRecorder(stream, { mimeType: 'video/webm;codecs=vp9,opus' });
+
+                mediaRecorder.ondataavailable = event => {
+                    if (event.data.size > 0) {
+                        recordedChunks.push(event.data);
+                    }
+                };
+
+                mediaRecorder.onstop = () => {
+                };
+
+                mediaRecorder.start(100);
+                startButton.disabled = true;
+                stopButton.disabled = false;
+                questionContainer.style.display = 'block';
+                nextButton.disabled = true;
+                isRecording = true;
+                startQuestionTimer();
+                displayQuestion();
+            } catch (error) {
+                console.error('Error accessing media devices:', error);
+                alert('Unable to access webcam and microphone. Please check your browser permissions.');
+            }
+        }
+
+        function stopRecording() {
+            if (stream) {
+                stream.getTracks().forEach(track => track.stop());
+                stream = null;
+            }
+            if (mediaRecorder && mediaRecorder.state === 'recording') {
+                mediaRecorder.stop();
+            }
+            startButton.disabled = false;
+            stopButton.disabled = true;
+            clearInterval(timerInterval);
+            downloadRecording();
+            isRecording = false;
+        }
+
+
+
+        function displayQuestion() {
+            if (currentQuestionIndex < questions.length) {
+                const currentQuestion = questions[currentQuestionIndex];
+                questionTextElement.textContent = currentQuestion.question;
+                answerInput.textContent = '';
+                nextButton.disabled = false;
+                questionStartTime = new Date();
+                timeLimit = currentQuestion.timeLimit || 60;
+                timerDisplay.textContent = `Time Remaining: ${timeRemaining} seconds`;
+            } else {
+                questionTextElement.textContent = 'Quiz completed!';
+                answerInput.style.display = 'none';
+                nextButton.style.display = 'none';
+                timerDisplay.textContent = '';
+                stopRecording();
+
+            }
+        }
+
+        function startQuestionTimer() {
+            let timeRemaining = timeLimit;
+            timerDisplay.textContent = `Time Remaining: ${timeRemaining} seconds`;
+
+            timerInterval = setInterval(() => {
+                timeRemaining--;
+                timerDisplay.textContent = `Time Remaining: ${timeRemaining} seconds`;
+
+                if (timeRemaining <= 0) {
+                    clearInterval(timerInterval);
+                    recordAnswer();
+                    nextQuestion();
+                }
+            }, 1000);
+        }
+
+        function recordAnswer() {
+            const endTime = new Date();
+            const timeTaken = (endTime.getTime() - questionStartTime.getTime()) / 1000;
+            userAnswers.push({
+                question: questions[currentQuestionIndex].question,
+                answer: answerInput.textContent,
+                timeTaken: timeTaken
+            });
+        }
+
+        function handleNextQuestion() {
+            clearInterval(timerInterval);
+            recordAnswer();
+
+            if (isRecording) {
+                mediaRecorder.stop();
+                isRecording = false;
+            }
+
+            currentQuestionIndex++;
+            if (currentQuestionIndex < questions.length) {
+                recordedChunks = [];
+                startRecordingForNextQuestion();
+                displayQuestion();
+                startQuestionTimer();
+            } else {
+                stopRecording();
+            }
+            nextButton.disabled = true;
+
+        }
+
+        async function startRecordingForNextQuestion() {
+            try {
+                stream = await navigator.mediaDevices.getUserMedia({
+                    video: true,
+                    audio: {
+                        sampleRate: 48000,
+                        channelCount: 2,
+                        echoCancellation: true,
+                        noiseSuppression: true
+                    }
+                });
+
+                preview.srcObject = stream;
+                preview.play();
+
+                mediaRecorder = new MediaRecorder(stream, { mimeType: 'video/webm;codecs=vp9,opus' });
+
+                mediaRecorder.ondataavailable = event => {
+                    if (event.data.size > 0) {
+                        recordedChunks.push(event.data);
+                    }
+                };
+
+                mediaRecorder.onstop = () => {
+                };
+
+                mediaRecorder.start(100);
+                isRecording = true;
+
+            } catch (error) {
+                console.error('Error accessing media devices:', error);
+                alert('Unable to access webcam and microphone. Please check your browser permissions.');
+            }
+        }
+
+
+
+        function downloadRecording() {
+            if (recordedChunks.length === 0) {
+                alert('No recording data available.');
+                return;
+            }
+
+            const blob = new Blob(recordedChunks, { type: 'video/webm;codecs=vp9,opus' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.style.display = 'none';
+            // Generate filename with question number and timestamp
+            const questionNumber = currentQuestionIndex > 0 ? currentQuestionIndex : 1;
+            const timestamp = new Date().toISOString().replace(/[-:]/g, '').slice(0, -5); // Format: YYYYMMDDTHHMMSS
+            a.download = `question_${questionNumber}_${timestamp}.webm`;
+            document.body.appendChild(a);
+            a.click();
+            setTimeout(() => {
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+                recordedChunks = [];
+                downloadButton.style.display = 'none';
+                saveResults();
+            }, 100);
+        }
+
+        function saveResults() {
+            const results = {
+                recording: recordedChunks,
+                answers: userAnswers,
+                questions: questions
+            };
+
+            const resultsJson = JSON.stringify(results);
+
+            const blob = new Blob([resultsJson], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+
+            const a = document.createElement('a');
+            a.href = url;
+            a.style.display = 'none';
+            a.download = 'quiz_results.json';
+            document.body.appendChild(a);
+            a.click();
+
+            setTimeout(() => {
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+            }, 100);
+
+            console.log(results);
+        }
+
+    </script>
+</body>
+</html>
