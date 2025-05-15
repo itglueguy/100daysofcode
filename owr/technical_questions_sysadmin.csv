@@ -1,0 +1,25 @@
+question,timeLimit
+We are now going to start the technical interview.,10
+Explain to me how you would join a windows pc to the domain?,120
+What steps would you take to optimize license usage?,120
+What are some pros and cons of using the cloud?,120
+why would you implement file archiving? Please give an example,60
+Explain to me how you would deploy an update for a production critical application?,60
+Please explain how to create a SMB file Share on Windows,60
+Please explain how to create a SMB file Share on Linux,60
+what is the purpose of the host file in windows,60
+when should you utilize onprem or cloud infrastructure for hosting purposes?,60
+Please explain - when a user visits a SSL website - how does the IP packets get to the destination and back?,60
+How would you setup hybrid infrastructure between Onprem and the cloud?,60
+How would you get developers to follow compliance standards?,60
+What is the MTU for SAN Storage?,60
+Which version of SNMP is considered secure?,60
+If you had only 3 Nodes of your AD Forest in Los Angeles - how would you ensure your users in Boston can get those entries synced in less than 10 minutes?,60
+What is the difference between an IAAS/PASS/SAAS? please give examples,60
+What is the difference between TCP/UDP?,60
+What is an Rj45 and what is the distance limitation?,60
+What ip ranges are the private IP ranges?,60
+What is a DHCP scope?,60
+how does EOL/EOS important for security? please give examples,60
+what is the differene between RTO/RPO?,60
+what is limitations of a 2.4GHZ vs. a 5ghz Wifi network?,60
