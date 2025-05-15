@@ -11,50 +11,67 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: flex-start; /* Changed to flex-start to move items to the top */
-            min-height: 100vh; /* Changed to min-height to ensure full viewport height */
+            justify-content: flex-start;
+            min-height: 100vh;
             margin: 0;
             background-color: #f3f4f6;
             color: #1f2937;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 2rem;
+            margin-top: 2rem;
+            text-align: center;
         }
 
         #recordingArea {
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin-bottom: 20px;
-            padding: 20px;
+            margin-bottom: 2rem;
+            padding: 2rem;
             background-color: #fff;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            border-radius: 1rem;
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+            width: 95%;
+            max-width: 800px;
+            min-height: 20rem;
+            height: auto;
         }
 
         video {
-            width: 640px;
-            height: 480px;
-            border: 1px solid #e0e0e0;
-            border-radius: 8px;
-            margin-bottom: 20px;
+            width: 100%;
+            max-width: 480px;
+            height: auto;
+            border-radius: 0.75rem;
+            margin-bottom: 1.5rem;
             background-color: #000;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.08);
         }
 
         button {
-            padding: 12px 24px;
-            font-size: 18px;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
             cursor: pointer;
-            margin: 10px;
-            border-radius: 8px;
+            margin: 0.5rem;
+            border-radius: 0.5rem;
             border: none;
             background-color: #4CAF50;
             color: #fff;
-            transition: background-color 0.3s ease;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 300px;
+            text-align: center;
         }
 
         button:hover {
             background-color: #45a049;
             opacity: 0.9;
+            transform: translateY(-0.125rem);
         }
 
         button:disabled {
@@ -63,6 +80,7 @@
             cursor: not-allowed;
             opacity: 0.7;
             box-shadow: none;
+            transform: translateY(0);
         }
 
         button:disabled:hover {
@@ -80,109 +98,95 @@
 
         #downloadRecording {
             display: none;
-            margin-top: 20px;
+            margin-top: 1.5rem;
+            width: 100%;
+            max-width: 300px;
+            text-align: center;
         }
 
         #questionContainer {
-            margin-top: 30px;
+            margin-top: 1.5rem;
             text-align: center;
-            padding: 25px;
+            padding: 1.5rem;
             background-color: #fff;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            display: none;
-            width: 80%;
-            max-width: 600px;
+            border-radius: 0.75rem;
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+            width: 95%;
+            max-width: 800px;
         }
 
         #questionText {
-            font-size: 28px;
-            margin-bottom: 20px;
+            font-size: 1.4rem;
+            margin-bottom: 1.5rem;
             color: #2c3e50;
             font-weight: 500;
         }
 
         #answerInput {
             display: none;
-            padding: 12px;
-            width: calc(100% - 40px);
-            margin: 15px auto;
-            border-radius: 8px;
+            padding: 0.75rem;
+            width: calc(100% - 2rem);
+            margin: 1rem auto;
+            border-radius: 0.5rem;
             border: 1px solid #e0e0e0;
-            font-size: 18px;
+            font-size: 1rem;
             transition: border-color 0.2s ease;
         }
 
         #answerInput:focus {
             outline: none;
             border-color: #4CAF50;
-            box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+            box-shadow: 0 0 0 0.125rem rgba(76, 175, 80, 0.2);
         }
 
         #timerDisplay {
-            font-size: 24px;
+            font-size: 1.2rem;
             font-weight: bold;
-            margin-bottom: 25px;
+            margin-bottom: 1.5rem;
             color: #3498db;
         }
 
         #nextQuestion {
-            margin-top: 20px;
+            margin-top: 1.5rem;
+            width: 100%;
+            max-width: 300px;
+            text-align: center;
         }
 
         #csvUpload {
-            margin-top: 20px;
-            margin-bottom: 20px;
-            padding: 10px;
+            margin-top: 1.5rem;
+            margin-bottom: 1.5rem;
+            padding: 0.75rem;
             border: 1px solid #e0e0e0;
-            border-radius: 8px;
+            border-radius: 0.5rem;
             background-color: #fff;
+            width: calc(100% - 1rem);
+            max-width: 400px;
         }
 
         #csvUpload:focus {
             outline: none;
             border-color: #4CAF50;
-            box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
-        }
-
-        /* Responsive adjustments */
-        @media screen and (max-width: 768px) {
-            #recordingArea {
-                width: 95%;
-            }
-            video {
-                width: 100%;
-                height: auto;
-            }
-            #questionContainer {
-                width: 95%;
-            }
-            button {
-                font-size: 16px;
-                padding: 10px 20px;
-            }
-            #questionText{
-                font-size: 20px;
-            }
+            box-shadow: 0 0 0 0.125rem rgba(76, 175, 80, 0.2);
         }
 
         #tipsContainer {
-            margin-top: 30px;
-            padding: 20px;
+            margin-top: 2rem;
+            padding: 1.5rem;
             background-color: #e0f7fa;
-            border-radius: 12px;
+            border-radius: 0.75rem;
             border: 1px solid #b2ebf2;
             color: #006064;
-            width: 80%;
-            max-width: 600px;
+            width: 95%;
+            max-width: 800px;
             text-align: left;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.08);
         }
 
         #tipsContainer h2 {
-            font-size: 24px;
+            font-size: 1.4rem;
             color: #00838f;
-            margin-bottom: 15px;
+            margin-bottom: 1rem;
             font-weight: 500;
         }
 
@@ -192,57 +196,177 @@
         }
 
         #tipsContainer li {
-            font-size: 18px;
+            font-size: 1rem;
             line-height: 1.6;
-            margin-bottom: 12px;
+            margin-bottom: 0.75rem;
         }
 
         #tipsContainer li:last-child {
             margin-bottom: 0;
         }
 
-        h1 {
-            font-size: 32px;
-            font-weight: bold;
-            color: #2c3e50;
-            margin-bottom: 20px;
-            margin-top: 20px; /* Added margin-top to create space between heading and top of viewport */
+        /* Styles for the accordion */
+        details {
+            width: 95%;
+            max-width: 800px;
+            margin-top: 2rem;
+            margin-bottom: 1.5rem;
+            padding: 0;
+            border-radius: 0.75rem;
+            background-color: #e0f7fa;
+            border: 1px solid #b2ebf2;
+            box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.08);
+        }
+
+        details summary {
+            padding: 1rem;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #00838f;
+            border-bottom: 1px solid #b2ebf2;
+            border-top-left-radius: 0.75rem;
+            border-top-right-radius: 0.75rem;
+            outline: none;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        details summary::after {
+            content: "▶";
+            transition: transform 0.3s ease;
+        }
+
+        details[open] summary::after {
+            transform: rotate(90deg);
+        }
+
+        details summary:hover {
+            background-color: #b2ebf2;
+        }
+
+        details div {
+            padding: 1.5rem;
+            background-color: #e0f7fa;
+            border-bottom-left-radius: 0.75rem;
+            border-bottom-right-radius: 0.75rem;
+        }
+
+        @media (min-width: 768px) {
+            h1 {
+                font-size: 3rem;
+            }
+
+            #recordingArea {
+                flex-direction: row;
+                align-items: flex-start;
+                width: 80%;
+                max-width: 1000px;
+                min-height: auto;
+                height: auto;
+            }
+
+            video {
+                width: 480px;
+                height: 360px;
+                margin-right: 1.5rem;
+                margin-bottom: 0;
+            }
+
+            button {
+                width: auto;
+                max-width: none;
+                text-align: center;
+            }
+
+            #downloadRecording {
+                width: auto;
+                max-width: none;
+                text-align: center;
+            }
+
+            #questionContainer {
+                margin-top: 0;
+                width: auto;
+                max-width: none;
+            }
+
+            #questionText {
+                font-size: 1.75rem;
+            }
+
+            #answerInput {
+                font-size: 1.1rem;
+                width: calc(100% - 2rem);
+            }
+
+            #timerDisplay {
+                font-size: 1.5rem;
+            }
+
+            #nextQuestion {
+                width: auto;
+                max-width: none;
+                text-align: center;
+            }
+
+            #csvUpload {
+                width: auto;
+                max-width: 400px;
+            }
+
+            #tipsContainer h2 {
+                font-size: 1.5rem;
+            }
+
+            #tipsContainer li {
+                font-size: 1.1rem;
+            }
         }
     </style>
 </head>
 <body>
-    <h1 style="font-size: 32px; font-weight: bold; color: #2c3e50; margin-bottom: 20px;">One Way Video Recorder / Mock Interviewer</h1>
+    <h1>One Way Video Recorder / Mock Interviewer</h1>
     <div id="recordingArea">
+        <div id="video-controls" style="display: flex; flex-direction: column; align-items: center; margin-top: 1.5rem;">
+            <button id="startRecording">Start Recording</button>
+            <button id="stopRecording" disabled>Stop Recording</button>
+            <button id="downloadRecording" style="display: none;">Download Recording</button>
+        </div>
         <video id="preview" autoplay muted></video>
-        <button id="startRecording">Start Recording</button>
-        <button id="stopRecording" disabled>Stop Recording</button>
-    </div>
-    <div id="questionContainer">
-        <div id="timerDisplay"></div>
-        <div id="questionText"></div>
-        <div id="answerInput" placeholder="Enter your answer here"></div>
-        <button id="nextQuestion" disabled>Next Question</button>
+        <div id="questionContainer">
+            <div id="timerDisplay"></div>
+            <div id="questionText"></div>
+            <div id="answerInput" placeholder="Enter your answer here"></div>
+            <button id="nextQuestion" disabled>Next Question</button>
+        </div>
     </div>
     <input type="file" id="csvUpload" accept=".csv" />
-    <ol style="margin-top: 10px; text-align: left; margin-left: 80px;">
-        <li><a href="https://github.com/itglueguy/100daysofcode/blob/main/owr/one_way_video_interview.csv" target="_blank">Download the CSV File</a> first.</li>
-        <li>Upload the modified CSV by choosing Choose File.</li>
-        <li>Press Start Recording to initiate a recording.</li>
-        <li>Press Stop Recording to stop the recording - It will automatically stop recording after the time remaining goes to 0.</li>
-        <li>Press Next Question to go to the next question.</li>
-        <li>You can review the downloaded file in your Downloads Folder.</li>
-    </ol>
-    <button id="downloadRecording" style="display: none;">Download Recording</button>
-
-    <div id="tipsContainer">
-        <h2>Interview Tips</h2>
-        <ol>
-            <li>Smile when answering interview questions.</li>
-            <li>Use the STAR (Situation, Task, Action, Results) format when answering questions.</li>
-            <li>If you don't know - say you don't know.</li>
-            <li>The Rounds are typically A) HR Screen/Technical Weedout/Meet the Team, B) Technical Interview Round, and C) Hiring Manager / Management Group Rounds</li>
+    <details>
+        <summary>Instructions</summary>
+        <ol style="margin-top: 1rem; text-align: left; margin-left: auto; margin-right: auto; max-width: 800px;">
+            <li><a href="https://github.com/itglueguy/100daysofcode/blob/main/owr/one_way_video_interview.csv" target="_blank">Download the CSV File</a> first.</li>
+            <li>Upload the modified CSV by choosing Choose File.</li>
+            <li>Press Start Recording to initiate a recording.</li>
+            <li>Press Stop Recording to stop the recording - It will automatically stop recording after the time remaining goes to 0.</li>
+            <li>Press Next Question to go to the next question.</li>
+            <li>You can review the downloaded file in your Downloads Folder.</li>
         </ol>
-    </div>
+    </details>
+
+    <details id="tipsContainer">
+        <summary><h2>Interview Tips</h2></summary>
+        <div>
+            <ol>
+                <li>Smile when answering interview questions.</li>
+                <li>Use the STAR (Situation, Task, Action, Results) format when answering questions.</li>
+                <li>If you don't know - say you don't know.</li>
+                <li>The Rounds are typically A) HR Screen/Technical Weedout/Meet the Team, B) Technical Interview Round, and C) Hiring Manager / Management Group Rounds</li>
+            </ol>
+        </div>
+    </details>
 
     <script>
         const preview = document.getElementById('preview');
@@ -287,14 +411,14 @@
 
             const reader = new FileReader();
             reader.onload = async (e) => {
-                try{
+                try {
                     const csvData = e.target.result;
                     await loadQuestions(csvData);
-                  } catch(error){
+                } catch (error) {
                     console.log(error);
                     alert('Failed to load questions. Please ensure the CSV file is correctly formatted and contains the required headers.');
                     questions = [];
-                  }
+                }
             };
             reader.onerror = () => {
                 alert('Error reading file. Please try again.');
@@ -436,7 +560,7 @@
                 if (timeRemaining <= 0) {
                     clearInterval(timerInterval);
                     recordAnswer();
-                    stopRecording(); // Stop recording when time is up
+                    stopRecording();
                     nextQuestion();
                 }
             }, 1000);
@@ -461,7 +585,6 @@
                 isRecording = false;
             }
 
-            // Speak the next question using Text-to-Speech
             if ('speechSynthesis' in window) {
                 const nextQuestionIndex = currentQuestionIndex + 1;
                 if (nextQuestionIndex < questions.length) {
@@ -532,9 +655,8 @@
             const a = document.createElement('a');
             a.href = url;
             a.style.display = 'none';
-            // Generate filename with question number and timestamp
             const questionNumber = currentQuestionIndex > 0 ? currentQuestionIndex : 1;
-            const timestamp = new Date().toISOString().replace(/[-:]/g, '').slice(0, -5); // Format:MMDDTHHMMSS
+            const timestamp = new Date().toISOString().replace(/[-:]/g, '').slice(0, -5);
             a.download = `question_${questionNumber}_${timestamp}.webm`;
             document.body.appendChild(a);
             a.click();
@@ -556,7 +678,6 @@
 
             console.log(results);
         }
-
     </script>
 </body>
 </html>
