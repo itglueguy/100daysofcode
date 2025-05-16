@@ -1,5 +1,23 @@
 question,timeLimit
-We are now going to start the interview,10
-What is PKI infrastructure and give an example?,30
-Explain to me how kerberos works?,60
-Explain to me how zero trust works?,60
+We are now going to start the interview,30
+What is the different between EIGRP / OSPF / RIP protocols?,30
+What is the difference between a Straight Through and a crossover cable?,60
+What does SFP Mean?,60
+What do routing metrics do?,60
+How is a VPN different from using Zero Trust?,60
+What is the difference between a firewall and a Next Generation Firewall?,60
+What are the different type of connections for a VPN?,60
+What is the function of a dhcp helper?,60
+What is a route table?,10
+What is the difference between a load balancer and a proxy?,30
+What is a SFP? GBIC?,https://itglueguy.github.io/100daysofcode/vig/interview_room.jpg,30
+What is a difference between Star topology and a ring network?,30
+What is the difference between traditional firewalls and next generation firewall appliances?,30
+What is a CDN and what is it used for?,30
+What is the purpose of QOS?,30
+What is the purpose of NAT in a a network?,30
+What is the BGP protocol do?,60
+What is the EIGRP protocol do?,60
+What is the OSPF protocol do?,60
+What is the spanning tree protocol do?,60
+What is LACP?,60

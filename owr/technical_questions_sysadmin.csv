@@ -1,5 +1,5 @@
 question,timeLimit
-We are now going to start the technical interview.,10
+We are now going to start the technical interview.,30
 Explain to me how you would join a windows pc to the domain?,120
 What steps would you take to optimize license usage?,120
 What are some pros and cons of using the cloud?,120
@@ -8,7 +8,7 @@ Explain to me how you would deploy an update for a production critical applicati
 Please explain how to create a SMB file Share on Windows,60
 Please explain how to create a SMB file Share on Linux,60
 what is the purpose of the host file in windows,60
-when should you utilize onprem or cloud infrastructure for hosting purposes?,60
+When should you utilize onprem or cloud infrastructure for hosting purposes?,60
 Please explain - when a user visits a SSL website - how does the IP packets get to the destination and back?,60
 How would you setup hybrid infrastructure between Onprem and the cloud?,60
 How would you get developers to follow compliance standards?,60

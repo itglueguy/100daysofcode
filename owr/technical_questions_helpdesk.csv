@@ -1,11 +1,11 @@
 question,timeLimit
-We are now going to start the technical interview.,10
+We are now going to start the technical interview.,30
 What is the port for SMB?,30
 What is the port for HTTP and HTTPS?,30
 What is the port for Pop / IMAP?,30
 What does RDP stand for?,30
-if someone had a problem with a printer; what should you try?,30
-if someone had a problem their internet on a program; what should you try?,30
+if someone had a problem with a printer; what should you try?,60
+if someone had a problem their internet on a program; what should you try?,60
 What are things that should be tried when troubleshooting file shares?,30
 What is an MDM System?,30
 What is Microsoft Intune used for?,30
